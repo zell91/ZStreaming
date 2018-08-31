@@ -1,0 +1,44 @@
+.root.dialog-pane{
+	-fx-background-color:rgba(100,100,100), linear-gradient(rgba(220,220,220) 0%, rgba(150, 150, 150) 8%), rgba(255,255,255), rgba(225,225,225);
+	-fx-background-insets:0, .1, 20 1.5 1.2 1.5, 20.3 1.5 1.2 1.5;
+	-fx-background-radius:13 13 4 4,13 13 4 4,13 13 3 3;
+	-fx-padding:25 10 10 10;
+}
+
+.root.dialog-pane .content{
+	-fx-text-fill:rgba(0, 0, 0);
+	-fx-font-size:17;
+	-fx-padding:12 20;
+}
+
+.choice-remember-check{
+	-fx-text-fill:rgba(0, 0, 0);
+	-fx-font-size:12.5;
+}
+
+.choice-remember-check .box{
+	-fx-background-color:rgba(180,180,180), rgba(255,255,255);
+	-fx-background-insets:0,1.2
+}
+
+.root.dialog-pane .button{
+	-fx-background-color:rgba(210,210,210), linear-gradient(rgba(235,235,235) 0%, rgba(210,210,210) 100%);
+	-fx-background-insets:0, .8, 0, 0;
+	-fx-background-radius:5, 4, 4, 0;
+	-fx-text-fill:rgba(50, 50, 50);
+	-fx-padding:5 6;
+	-fx-font-size:12.5;	
+}
+
+.root.dialog-pane .button:hover{
+	-fx-background-color:rgba(210,210,210), linear-gradient(rgba(235,235,235) 0%, rgba(215,215,215) 100%), rgba(225,225,225,.1);
+}
+
+.root.dialog-pane .button:pressed{
+	-fx-background-color:rgba(210,210,210), linear-gradient(rgba(235,235,235) 0%, rgba(215,215,215) 100%), rgba(245,245,245,.2);
+}
+
+
+.exit-button-bar{
+	-fx-padding:0 0 0 0;
+}

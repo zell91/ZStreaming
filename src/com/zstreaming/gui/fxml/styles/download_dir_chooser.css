@@ -1,0 +1,47 @@
+#downloadDirLbl{
+	-fx-font-size:14px;	
+}
+
+.simple_label, #downloadDirTxt{
+	-fx-text-fill:rgba(50,50,50, 1);
+	-fx-font-family:Open Sans;
+}
+
+#downloadDirTxt{
+	-fx-background-color:rgba(180, 180, 180, 1), rgba(255,255,255);
+	-fx-background-radius:0;
+	-fx-background-insets:0, 1.85 0 1.85 1.85;
+	-fx-prompt-text-fill: rgba(150,150,150,0.6);
+	-fx-prompt-font-style:italic;
+	-fx-font-size:12px;
+	-fx-padding:6 10;
+}
+
+#downloadDirTxt:hover{
+	-fx-background-color:rgba(150, 150, 150, 1), rgba(255,255,255);
+}
+
+#downloadDirTxt:focused{
+	-fx-background-color:rgba(120, 120, 120, 1), rgba(255,255,255);
+	-fx-prompt-text-fill: rgba(150,150,150,0.6);
+}
+
+.dir_chooser_btn{
+	-fx-font-family:Open Sans;
+	-fx-background-radius:0;
+	-fx-background-color:rgba(60,60,60,1);
+	-fx-background-radius:0;
+	-fx-background-insets:0,0,0,0;
+	-fx-text-fill:rgba(250,250,250, 1);
+	-fx-font-weight:700;
+	-fx-font-size:12;
+	-fx-padding:5.5 12;
+}
+
+.dir_chooser_btn:hover{
+	-fx-background-color:rgba(60,60,60,0.9);
+}
+
+.dir_chooser_btn:pressed{
+	-fx-background-color:rgba(60,60,60,.75);
+}

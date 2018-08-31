@@ -1,0 +1,76 @@
+.root.dialog-pane{
+	-fx-background-color:rgba(100,100,100), rgba(255,255,255);
+	-fx-background-insets:0, .8;
+	-fx-padding:15 5 5 15;
+	-fx-background-position:RIGHT 12 TOP 12;
+	-fx-background-size:13 13, 13 13;
+	-fx-background-repeat:no-repeat;
+	-fx-background-image:url("../../../../../../images/close_x.png"), url("../../../../../../images/opacity_light.png");
+}
+
+.root.dialog-pane.hover-close{
+	-fx-background-image:url("../../../../../../images/close_x.png");
+}
+
+.root.dialog-pane.pressed-close{
+	-fx-background-image:url("../../../../../../images/close_x.png"), url("../../../../../../images/opacity.png");
+}
+
+.root.dialog-pane .content{
+	-fx-text-fill:rgba(80, 80, 80, .9);
+	-fx-background-color:transparent;
+	-fx-font-size:15;
+	-fx-padding:10 0 25;	
+}
+
+
+.root.dialog-pane GridPane{
+	-fx-background-color:transparent;
+	-fx-border-width:0 0 .5 0;
+	-fx-border-color:rgba(210,210,210);
+	-fx-padding:0 0 10;
+}
+
+.root.dialog-pane GridPane .label{
+	-fx-font-size:16;
+	-fx-padding:0;
+	-fx-text-fill:rgba(0, 0, 0);
+}
+
+.root.dialog-pane .action-dialog-btn{
+	-fx-background-color:rgba(215, 0, 0), linear-gradient(transparent 0%, rgba(255,255,255, .4) 100%);
+	-fx-text-fill:rgba(255, 255, 255);	
+}
+
+.root.dialog-pane .action-dialog-btn:hover{
+	-fx-background-color:rgba(215, 0, 0), linear-gradient(transparent 0%, rgba(255,255,255, .5) 100%);
+}
+
+.root.dialog-pane .action-dialog-btn:pressed{
+	-fx-background-color:rgba(215, 0, 0), linear-gradient(transparent 0%, rgba(255,255,255, .7) 100%);
+}
+
+.root.dialog-pane .cancel-dialog-btn{
+	-fx-background-color:rgba(180, 180, 180), rgba(255, 255, 255), linear-gradient(transparent 0%, rgba(220,220,220, .6) 100%);
+	-fx-text-fill:rgba(80, 80, 80, .9);		
+}
+
+.root.dialog-pane .cancel-dialog-btn:hover{
+	-fx-background-color:rgba(180, 180, 180), rgba(255, 255, 255), linear-gradient(transparent 0%, rgba(220,220,220, .5) 100%);
+}
+
+.root.dialog-pane .cancel-dialog-btn:pressed{
+	-fx-background-color:rgba(180, 180, 180), rgba(255, 255, 255), linear-gradient(transparent 0%, rgba(220,220,220, .3) 100%);
+	-fx-background-insets:0, .2;
+}
+
+.root.dialog-pane .button{
+	-fx-background-insets:0, .3;
+	-fx-background-radius:0, 0, 0;
+	-fx-padding:4 8;
+	-fx-font-size:14;	
+}
+
+.exit-button-bar{
+	-fx-padding:0 0 0 0;
+}

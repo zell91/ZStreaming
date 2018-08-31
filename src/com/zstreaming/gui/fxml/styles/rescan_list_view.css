@@ -1,0 +1,38 @@
+.rescan-list-view-container{
+	-fx-padding:10 8;
+	-fx-background-insets:0, 1.5;
+}
+
+.rescan-list-view .cell{
+	-fx-padding:0 10;
+	-fx-text-fill:rgba(50,50,50, .8);
+}
+
+.rescan-list-view .cell:filled:hover{
+	-fx-background-color:rgba(240,240,240);
+}
+.rescan-list-view .cell:filled:selected{
+	-fx-background-color:rgb(124, 163, 206,1), white, linear-gradient( rgba(226, 237, 253,0.8) 10%, rgba(216, 233, 252,0.8) 80%), rgb(200, 200, 200,0.2);
+	-fx-background-insets:0, 0;
+	-fx-text-fill:rgba(0,0,0, 1);
+	-fx-font-weight:700;
+}
+
+.rescan-list-view-header{
+	-fx-font-size:14;
+}
+
+.rescan-list-view-action{
+	-fx-padding:3 10;
+	-fx-font-size:13;
+}
+
+.rescan-list-view-close{
+	-fx-background-size:14 14;
+	-fx-pref-width:16;
+	-fx-pref-height:16;
+	-fx-min-width:16;
+	-fx-min-height:16;
+	-fx-max-width:16;
+	-fx-max-height:16;
+}

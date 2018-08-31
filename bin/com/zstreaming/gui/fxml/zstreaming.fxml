@@ -1,0 +1,1740 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.BorderPane?>
+<?import com.zstreaming.gui.components.Fieldset?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.shape.Shape?>
+<?import javafx.scene.shape.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+<?import com.zstreaming.gui.components.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.text.TextFlow ?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.layout.Background?>
+<?import java.util.ArrayList?>
+<?import javafx.scene.control.ContextMenu?>
+
+<BorderPane fx:id="root" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zstreaming.gui.controller.ZController" stylesheets="@styles/zstreaming.css, @styles/download_dir_chooser.css">
+	<top>		
+		<!-- HEADER BAR -->
+		
+		<VBox fx:id="head" spacing="0" alignment="TOP_LEFT">
+			<children>
+				<GridPane fx:id="headerBar" hgap="10" vgap="10" BorderPane.alignment="CENTER">
+					<children>
+					</children>
+				</GridPane>
+				<HBox fx:id="menuWrapper">
+					<children>
+						<MenuBar fx:id="menuBar" HBox.hgrow="ALWAYS">
+							<menus>
+								<Menu styleClass="menu_item" text="File">
+									<items>
+										<MenuItem fx:id="" text="" />
+									</items>
+								</Menu>
+								<Menu styleClass="menu_item" text="Help">
+									<items>
+										<MenuItem fx:id="" text="" />
+									</items>
+								</Menu>
+							</menus>
+						</MenuBar>
+					</children>
+				</HBox> 
+				<HBox fx:id="toolbarWrapper" prefHeight="30">
+					<children>
+ 						<ToggleButton fx:id="autoModeSwitch" onAction="#autoMode" />
+					</children>
+				</HBox> 
+			</children>
+		</VBox>
+		
+		<!-- END HEADER BAR -->
+		
+	</top>
+	<left>
+		
+		<!-- LEFT SIDE MENU -->
+	
+		<VBox fx:id="leftSide" prefWidth="280" alignment="TOP_CENTER">
+			<BorderPane.margin>
+				<Insets  top="-2" left="0" bottom="0" right="0" />
+			</BorderPane.margin>
+			<children>
+				<StackPane fx:id="headerLeft">
+					<padding>
+						<Insets top="20" bottom="20" left="0" right="0" />
+					</padding>
+					<children>
+						<Label text="ZStreaming" style="-fx-font-size:38px; -fx-font-weight:bold;" />
+						<!-- LOGO -->
+					</children>
+				</StackPane>
+				<Button styleClass="sectionBtn, section_selected" fx:id="scanSecBtn" prefWidth="Infinity" onAction="#scannerSection">
+					<graphic>
+						<HBox spacing="5" alignment="CENTER_LEFT">
+							<children>
+								<ImageView styleClass="sectionBtnImg" fitWidth="15" fitHeight="15" >
+									<image>
+										 <Image url="@../../../../../images/scan.png" />
+									</image>
+								</ImageView>
+								<Label fx:id="scanSecBtnLbl" styleClass="sectionBtnText" text="Analizza URL" />
+							</children>
+						</HBox>
+					</graphic>
+				</Button>
+				<Button styleClass="sectionBtn" fx:id="downSecBtn" prefWidth="Infinity" onAction="#downloadSection">
+					<graphic>
+						<HBox spacing="5" alignment="CENTER_LEFT">
+							<children>
+								<ImageView styleClass="sectionBtnImg" fitWidth="15" fitHeight="15" >
+									<image>
+										 <Image url="@../../../../../images/download.png" />
+									</image>
+								</ImageView>
+								<Label fx:id="downSecBtnLbl" styleClass="sectionBtnText" text="In download" />
+							</children>
+						</HBox>
+					</graphic>
+				</Button>
+				<Button styleClass="sectionBtn" fx:id="listSecBtn" prefWidth="Infinity" onAction="#myListSection">
+					<graphic>
+						<HBox spacing="5" alignment="CENTER_LEFT">
+							<children>
+								<ImageView styleClass="sectionBtnImg" fitWidth="15" fitHeight="15" >
+									<image>
+										 <Image url="@../../../../../images/list.png" />
+									</image>
+								</ImageView>
+								<Label fx:id="listSecBtnLbl" styleClass="sectionBtnText" text="Le mie liste" />
+							</children>
+						</HBox>
+					</graphic>
+				</Button>
+				<Button styleClass="sectionBtn" fx:id="historySecBtn" prefWidth="Infinity" onAction="#historySection">
+					<graphic>
+						<HBox spacing="5" alignment="CENTER_LEFT">
+							<children>
+								<ImageView styleClass="sectionBtnImg" fitWidth="15" fitHeight="15" >
+									<image>
+										 <Image url="@../../../../../images/history.png" />
+									</image>
+								</ImageView>
+								<Label fx:id="historySecBtnLbl" styleClass="sectionBtnText" text="Cronologia" />
+							</children>
+						</HBox>
+					</graphic>
+				</Button>				
+				<Button styleClass="sectionBtn" fx:id="statSecBtn" prefWidth="Infinity" onAction="#statSection">
+					<graphic>
+						<HBox spacing="5" alignment="CENTER_LEFT">
+							<children>
+								<ImageView styleClass="sectionBtnImg" fitWidth="15" fitHeight="15" >
+									<image>
+										 <Image url="@../../../../../images/statistics.png" />
+									</image>
+								</ImageView>
+								<Label fx:id="statSecBtnLbl" styleClass="sectionBtnText" text="Statistiche" />
+							</children>
+						</HBox>
+					</graphic>
+				</Button>				
+				<Button styleClass="sectionBtn" fx:id="searchSecBtn" prefWidth="Infinity" onAction="#searchSection">
+					<graphic>
+						<HBox spacing="5" alignment="CENTER_LEFT">
+							<children>
+								<ImageView styleClass="sectionBtnImg" fitWidth="15" fitHeight="15" >
+									<image>
+										 <Image url="@../../../../../images/search.png" />
+									</image>
+								</ImageView>
+								<Label fx:id="searchSecBtnLbl" styleClass="sectionBtnText" text="Ricerca" />
+							</children>
+						</HBox>
+					</graphic>
+				</Button>
+				<Button styleClass="sectionBtn" fx:id="settingsSecBtn" prefWidth="Infinity" onAction="#settingSection">
+					<graphic>
+						<HBox spacing="5" alignment="CENTER_LEFT">
+							<children>
+								<ImageView styleClass="sectionBtnImg" fitWidth="15" fitHeight="15" >
+									<image>
+										 <Image url="@../../../../../images/settings.png" />
+									</image>
+								</ImageView>
+								<Label fx:id="settingsSecBtnLbl" styleClass="sectionBtnText" text="Impostazioni" />
+							</children>
+						</HBox>
+					</graphic>
+				</Button>
+			</children>
+		</VBox>
+		
+		<!-- END LEFT SIDE MENU -->
+		
+	</left>
+	<center>
+	
+		<!-- HIDDEN SECTIONS -->
+		<fx:define>
+						
+			<!-- STATISTICS SECTIONS -->
+			
+			<SplitPane fx:id="statPane" orientation="HORIZONTAL" dividerPositions=".3, .7">
+				<items>
+					
+					<!-- Statistics Left Side -->
+				
+					<VBox fx:id="statistcsTreeContainer" prefWidth="0" minWidth="0" maxWidth="600">
+						<children>
+							<TreeView fx:id="treeStat" VBox.vgrow="ALWAYS">
+							
+								<!-- Layer0 -->
+								
+								<TreeItem fx:id="totTreeItem" value="Sessione corrente" expanded="true">
+									<graphic>
+										<ImageView styleClass="tree-item-image, tree-item-layer1" fitWidth="16" fitHeight="15">
+											<image>
+												<Image url="@../../../../../images/current_session.png" />
+											</image>
+										</ImageView>
+									</graphic>								
+									<children>
+										
+										<!-- Layer1 -->
+										
+										<TreeItem fx:id="actTotItem" expanded="true" value="0">
+											<graphic>
+												<HBox styleClass="tree-item-layer1" alignment="CENTER_LEFT">
+													<children>
+														<ImageView styleClass="tree-item-image, tree-item-layer1" fitWidth="15" fitHeight="15">
+															<image>
+																<Image url="@../../../../../images/down.png" />
+															</image>
+														</ImageView>
+														<Label fx:id="actTotItemHead" styleClass="tree-value-head, tree-item-layer1" text="Download attivi:" />
+													</children>
+												</HBox>
+											</graphic>
+											<children>
+											
+												<!-- Layer2 -->
+												
+												<TreeItem fx:id="down0" value="" expanded="false">
+													<graphic>
+														<HBox styleClass="tree-item-layer2" alignment="CENTER_LEFT">
+															<children>
+																<ImageView styleClass="tree-item-image, tree-item-layer2" fitWidth="12" fitHeight="12">
+																	<image>
+																		<Image url="@../../../../../images/_down.png" />
+																	</image>
+																</ImageView>
+																<Label fx:id="down0Head" styleClass="tree-value-head, tree-item-layer2" text="Download #0" />
+															</children>
+														</HBox>
+													</graphic>
+													<children>
+													
+														<!-- Layer3 -->
+														
+														<TreeItem fx:id="downloaded0" expanded="false" value="0 byte">
+															<graphic>
+																<HBox styleClass="tree-item-layer3" alignment="CENTER_LEFT">
+																	<children>
+																		<ImageView styleClass="tree-item-image, tree-item-layer3" fitWidth="12" fitHeight="12">
+																			<image>
+																				<Image url="@../../../../../images/progress.png" />
+																			</image>
+																		</ImageView>
+																		<Label fx:id="downloaded0Head" styleClass="tree-value-head, tree-item-layer3" text="Dati scaricati:" />
+																	</children>
+																</HBox>
+															</graphic>
+														</TreeItem>
+														
+														<!-- Layer3 -->
+														
+														<TreeItem fx:id="remain0" expanded="false" value="0 byte">
+															<graphic>
+																<HBox styleClass="tree-item-layer3" alignment="CENTER_LEFT">
+																	<children>
+																		<ImageView styleClass="tree-item-image, tree-item-layer3" fitWidth="12" fitHeight="12">
+																			<image>
+																				<Image url="@../../../../../images/remain.png" />
+																			</image>
+																		</ImageView>
+																		<Label fx:id="remain0Head" styleClass="tree-value-head, tree-item-layer3" text="Dati rimanenti:" />
+																	</children>
+																</HBox>
+															</graphic>
+														</TreeItem>														
+																												
+														<!-- Layer3 -->
+														
+														<TreeItem fx:id="remainTime0" expanded="false" value="-">
+															<graphic>
+																<HBox styleClass="tree-item-layer3" alignment="CENTER_LEFT">
+																	<children>
+																		<ImageView styleClass="tree-item-image, tree-item-layer3" fitWidth="12" fitHeight="12">
+																			<image>
+																				<Image url="@../../../../../images/time_remain.png" />
+																			</image>
+																		</ImageView>
+																		<Label fx:id="remainTime0Head" styleClass="tree-value-head, tree-item-layer3" text="Tempo stimato:" />
+																	</children>
+																</HBox>
+															</graphic>
+														</TreeItem>														
+		
+														<!-- Layer3 -->
+														
+														<TreeItem fx:id="speed0" expanded="false" value="0 byte/s">
+															<graphic>
+																<HBox styleClass="tree-item-layer3" alignment="CENTER_LEFT">
+																	<children>
+																		<ImageView styleClass="tree-item-image, tree-item-layer3" fitWidth="12" fitHeight="12">
+																			<image>
+																				<Image url="@../../../../../images/speed_0.png" />
+																			</image>
+																		</ImageView>
+																		<Label fx:id="speed0Head" styleClass="tree-value-head, tree-item-layer3" text="Velocità:" />
+																	</children>
+																</HBox>
+															</graphic>
+														</TreeItem>	
+														
+													</children>
+												</TreeItem>
+												
+												<!-- Layer2 -->
+												
+												<TreeItem fx:id="down1" value="" expanded="false">
+													<graphic>
+														<HBox styleClass="tree-item-layer2" alignment="CENTER_LEFT">
+															<children>
+																<ImageView styleClass="tree-item-image, tree-item-layer2" fitWidth="12" fitHeight="12">
+																	<image>
+																		<Image url="@../../../../../images/_down.png" />
+																	</image>
+																</ImageView>
+																<Label fx:id="down1Head" styleClass="tree-value-head, tree-item-layer2" text="Download #1" />
+															</children>
+														</HBox>
+													</graphic>									
+													<children>
+													
+														<!-- Layer3 -->
+														
+														<TreeItem fx:id="downloaded1" expanded="false" value="0 byte">
+															<graphic>
+																<HBox styleClass="tree-item-layer3" alignment="CENTER_LEFT">
+																	<children>
+																		<ImageView styleClass="tree-item-image, tree-item-layer3" fitWidth="12" fitHeight="12">
+																			<image>
+																				<Image url="@../../../../../images/progress.png" />
+																			</image>
+																		</ImageView>
+																		<Label fx:id="downloaded1Head" styleClass="tree-value-head, tree-item-layer3" text="Dati scaricati:" />
+																	</children>
+																</HBox>
+															</graphic>
+														</TreeItem>
+														
+														<!-- Layer3 -->
+														
+														<TreeItem fx:id="remain1" expanded="false" value="0 byte">
+															<graphic>
+																<HBox styleClass="tree-item-layer3" alignment="CENTER_LEFT">
+																	<children>
+																		<ImageView styleClass="tree-item-image, tree-item-layer3" fitWidth="12" fitHeight="12">
+																			<image>
+																				<Image url="@../../../../../images/remain.png" />
+																			</image>
+																		</ImageView>
+																		<Label fx:id="remain1Head" styleClass="tree-value-head, tree-item-layer3" text="Dati rimanenti:" />
+																	</children>
+																</HBox>
+															</graphic>
+														</TreeItem>														
+																												
+														<!-- Layer3 -->
+														
+														<TreeItem fx:id="remainTime1" expanded="false" value="-">
+															<graphic>
+																<HBox styleClass="tree-item-layer3" alignment="CENTER_LEFT">
+																	<children>
+																		<ImageView styleClass="tree-item-image, tree-item-layer3" fitWidth="12" fitHeight="12">
+																			<image>
+																				<Image url="@../../../../../images/time_remain.png" />
+																			</image>
+																		</ImageView>
+																		<Label fx:id="remainTime1Head" styleClass="tree-value-head, tree-item-layer3" text="Tempo stimato:" />
+																	</children>
+																</HBox>
+															</graphic>
+														</TreeItem>														
+		
+														<!-- Layer3 -->
+														
+														<TreeItem fx:id="speed1" expanded="false" value="0 byte/s">
+															<graphic>
+																<HBox styleClass="tree-item-layer3" alignment="CENTER_LEFT">
+																	<children>
+																		<ImageView styleClass="tree-item-image, tree-item-layer3" fitWidth="12" fitHeight="12">
+																			<image>
+																				<Image url="@../../../../../images/speed_0.png" />
+																			</image>
+																		</ImageView>
+																		<Label fx:id="speed1Head" styleClass="tree-value-head, tree-item-layer3" text="Velocità:" />
+																	</children>
+																</HBox>
+															</graphic>
+														</TreeItem>	
+														
+													</children>
+												</TreeItem>
+												
+												<!-- Layer2 -->
+												
+												<TreeItem fx:id="down2" value="" expanded="false">
+													<graphic>
+														<HBox styleClass="tree-item-layer2" alignment="CENTER_LEFT">
+															<children>
+																<ImageView styleClass="tree-item-image, tree-item-layer2" fitWidth="12" fitHeight="12">
+																	<image>
+																		<Image url="@../../../../../images/_down.png" />
+																	</image>
+																</ImageView>
+																<Label fx:id="down2Head" styleClass="tree-value-head, tree-item-layer2" text="Download #2" />
+															</children>
+														</HBox>
+													</graphic>										
+													<children>
+													
+														<!-- Layer3 -->
+														
+														<TreeItem fx:id="downloaded2" expanded="false" value="0 byte">
+															<graphic>
+																<HBox styleClass="tree-item-layer3" alignment="CENTER_LEFT">
+																	<children>
+																		<ImageView styleClass="tree-item-image, tree-item-layer3" fitWidth="12" fitHeight="12">
+																			<image>
+																				<Image url="@../../../../../images/progress.png" />
+																			</image>
+																		</ImageView>
+																		<Label fx:id="downloaded2Head" styleClass="tree-value-head, tree-item-layer3" text="Dati scaricati:" />
+																	</children>
+																</HBox>
+															</graphic>
+														</TreeItem>
+														
+														<!-- Layer3 -->
+														
+														<TreeItem fx:id="remain2" expanded="false" value="0 byte">
+															<graphic>
+																<HBox styleClass="tree-item-layer3" alignment="CENTER_LEFT">
+																	<children>
+																		<ImageView styleClass="tree-item-image, tree-item-layer3" fitWidth="12" fitHeight="12">
+																			<image>
+																				<Image url="@../../../../../images/remain.png" />
+																			</image>
+																		</ImageView>
+																		<Label fx:id="remain2Head" styleClass="tree-value-head, tree-item-layer3" text="Dati rimanenti:" />
+																	</children>
+																</HBox>
+															</graphic>
+														</TreeItem>														
+																												
+														<!-- Layer3 -->
+														
+														<TreeItem fx:id="remainTime2" expanded="false" value="-">
+															<graphic>
+																<HBox styleClass="tree-item-layer3" alignment="CENTER_LEFT">
+																	<children>
+																		<ImageView styleClass="tree-item-image, tree-item-layer3" fitWidth="12" fitHeight="12">
+																			<image>
+																				<Image url="@../../../../../images/time_remain.png" />
+																			</image>
+																		</ImageView>
+																		<Label fx:id="remainTime2Head" styleClass="tree-value-head, tree-item-layer3" text="Tempo stimato:" />
+																	</children>
+																</HBox>
+															</graphic>
+														</TreeItem>														
+		
+														<!-- Layer3 -->
+														
+														<TreeItem fx:id="speed2" expanded="false" value="0 byte/s">
+															<graphic>
+																<HBox styleClass="tree-item-layer3" alignment="CENTER_LEFT">
+																	<children>
+																		<ImageView styleClass="tree-item-image, tree-item-layer3" fitWidth="12" fitHeight="12">
+																			<image>
+																				<Image url="@../../../../../images/speed_0.png" />
+																			</image>
+																		</ImageView>
+																		<Label fx:id="speed2Head" styleClass="tree-value-head, tree-item-layer3" text="Velocità:" />
+																	</children>
+																</HBox>
+															</graphic>
+														</TreeItem>	
+																												
+													</children>
+												</TreeItem>												
+																								
+												<!-- Layer2 -->
+												
+												<TreeItem fx:id="down3" value="" expanded="false">
+													<graphic>
+														<HBox styleClass="tree-item-layer2" alignment="CENTER_LEFT">
+															<children>
+																<ImageView styleClass="tree-item-image, tree-item-layer2" fitWidth="12" fitHeight="12">
+																	<image>
+																		<Image url="@../../../../../images/_down.png" />
+																	</image>
+																</ImageView>
+																<Label fx:id="down3Head" styleClass="tree-value-head, tree-item-layer2" text="Download #3" />
+															</children>
+														</HBox>
+													</graphic>									
+													<children>
+													
+														<!-- Layer3 -->
+														
+														<TreeItem fx:id="downloaded3" expanded="false" value="0 byte">
+															<graphic>
+																<HBox styleClass="tree-item-layer3" alignment="CENTER_LEFT">
+																	<children>
+																		<ImageView styleClass="tree-item-image, tree-item-layer3" fitWidth="12" fitHeight="12">
+																			<image>
+																				<Image url="@../../../../../images/progress.png" />
+																			</image>
+																		</ImageView>
+																		<Label fx:id="downloaded3Head" styleClass="tree-value-head, tree-item-layer3" text="Dati scaricati:" />
+																	</children>
+																</HBox>
+															</graphic>
+														</TreeItem>
+														
+														<!-- Layer3 -->
+														
+														<TreeItem fx:id="remain3" expanded="false" value="0 byte">
+															<graphic>
+																<HBox styleClass="tree-item-layer3" alignment="CENTER_LEFT">
+																	<children>
+																		<ImageView styleClass="tree-item-image, tree-item-layer3" fitWidth="12" fitHeight="12">
+																			<image>
+																				<Image url="@../../../../../images/remain.png" />
+																			</image>
+																		</ImageView>
+																		<Label fx:id="remain3Head" styleClass="tree-value-head, tree-item-layer3" text="Dati rimanenti:" />
+																	</children>
+																</HBox>
+															</graphic>
+														</TreeItem>														
+																												
+														<!-- Layer3 -->
+														
+														<TreeItem fx:id="remainTime3" expanded="false" value="-">
+															<graphic>
+																<HBox styleClass="tree-item-layer3" alignment="CENTER_LEFT">
+																	<children>
+																		<ImageView styleClass="tree-item-image, tree-item-layer3" fitWidth="12" fitHeight="12">
+																			<image>
+																				<Image url="@../../../../../images/time_remain.png" />
+																			</image>
+																		</ImageView>
+																		<Label fx:id="remainTime3Head" styleClass="tree-value-head, tree-item-layer3" text="Tempo stimato:" />
+																	</children>
+																</HBox>
+															</graphic>
+														</TreeItem>														
+		
+														<!-- Layer3 -->
+														
+														<TreeItem fx:id="speed3" expanded="false" value="0 byte/s">
+															<graphic>
+																<HBox styleClass="tree-item-layer3" alignment="CENTER_LEFT">
+																	<children>
+																		<ImageView styleClass="tree-item-image, tree-item-layer3" fitWidth="12" fitHeight="12">
+																			<image>
+																				<Image url="@../../../../../images/speed_0.png" />
+																			</image>
+																		</ImageView>
+																		<Label fx:id="speed3Head" styleClass="tree-value-head, tree-item-layer3" text="Velocità:" />
+																	</children>
+																</HBox>
+															</graphic>
+														</TreeItem>	
+																																							
+													</children>
+												</TreeItem>													
+											</children>
+										</TreeItem>
+										
+										<!-- Layer1 -->
+										
+										<TreeItem fx:id="totCompleted" expanded="false" value="0">
+											<graphic>
+												<HBox styleClass="tree-item-layer1" alignment="CENTER_LEFT">
+													<children>
+														<ImageView styleClass="tree-item-image, tree-item-layer1" fitWidth="15" fitHeight="15">
+															<image>
+																<Image url="@../../../../../images/dw_cell.png" />
+															</image>
+														</ImageView>
+														<Label fx:id="totCompletedHead" styleClass="tree-value-head, tree-item-layer1" text="Download completati:" />
+													</children>
+												</HBox>
+											</graphic>
+										</TreeItem>	
+										
+										<!-- Layer1 -->
+																					
+										<TreeItem fx:id="totDownloaded" expanded="false" value="0 byte">
+											<graphic>
+												<HBox styleClass="tree-item-layer1" alignment="CENTER_LEFT">
+													<children>
+														<ImageView styleClass="tree-item-image, tree-item-layer1" fitWidth="14" fitHeight="14">
+															<image>
+																<Image url="@../../../../../images/progress.png" />
+															</image>
+														</ImageView>
+														<Label fx:id="totDownloadedHead" styleClass="tree-value-head, tree-item-layer1" text="Dati scaricati:" />
+													</children>
+												</HBox>
+											</graphic>
+										</TreeItem>
+										
+										<!-- Layer1 -->
+										
+										<TreeItem fx:id="totSpeed" expanded="false" value="0 byte/s">
+											<graphic>
+												<HBox styleClass="tree-item-layer1" alignment="CENTER_LEFT">
+													<children>
+														<ImageView styleClass="tree-item-image, tree-item-layer1" fitWidth="15" fitHeight="15">
+															<image>
+																<Image url="@../../../../../images/speed_0.png" />
+															</image>
+														</ImageView>
+														<Label fx:id="totSpeedHead" styleClass="tree-value-head, tree-item-layer1" text="Velocità:" />
+													</children>
+												</HBox>
+											</graphic>
+										</TreeItem>																	
+									</children>
+								</TreeItem>
+							</TreeView>
+						</children>
+					</VBox>
+					
+					<!-- Statistics Right Side -->
+					
+					<GridPane fx:id="statisticsContainer" vgap="5" hgap="5" gridLinesVisible="false">
+						<padding>
+							<Insets top="10" bottom="10" left="20" right="20" />
+						</padding>
+						<children>
+						
+							<!-- StatChart 0 -->
+
+												
+							<!-- StatChart 1 -->
+
+							
+							<!-- StatChart 2 -->
+					
+							
+							<!-- StatChart 3 -->
+				
+							
+							<!-- Main StatChart -->
+					
+						</children>
+						<columnConstraints>
+							<ColumnConstraints hgrow="ALWAYS" minWidth="150" prefWidth="150"  />
+							<ColumnConstraints hgrow="ALWAYS" minWidth="150" prefWidth="150" />
+						</columnConstraints>			
+						<rowConstraints>
+							<RowConstraints vgrow="SOMETIMES" percentHeight="28" />
+							<RowConstraints vgrow="SOMETIMES" percentHeight="28"/>
+							<RowConstraints vgrow="ALWAYS" percentHeight="44" />
+						</rowConstraints>						
+					</GridPane>					
+				</items>
+			</SplitPane>	
+			
+			<!-- END STATISTICS SECTION -->
+			
+			
+			
+			<!-- MyLIST SECTION -->
+			
+			<VBox fx:id="myListPane">
+				<children>
+					<Label fx:id="headListLbl" text="Le mie liste" />
+					
+					<!-- ToolBar -->
+					
+					<ToolBar fx:id="toolbarListPane">
+						<items>
+							<fx:define>
+								<Button styleClass="list-btn" fx:id="backBtn" text="Indietro" onAction="#backToListContainer" />							
+							</fx:define>
+							<ToggleButton styleClass="list-btn" fx:id="addListBtn" text="Aggiungi lista" onAction="#addList">
+								<graphic>
+									<ImageView styleClass="list-btn-graphic" fx:id="addListGraphic" fitWidth="20" fitHeight="20">
+										<image>
+											<Image url="@../../../../../images/add_btn.png" />
+										</image>
+									</ImageView>
+								</graphic>
+							</ToggleButton>						
+							<ToggleButton styleClass="list-btn" fx:id="selectionListBtn" text="Seleziona" onAction="#showSelectionForm">
+								<graphic>
+									<ImageView styleClass="list-btn-graphic" fx:id="selectionGraphic" fitWidth="20" fitHeight="20">
+										<image>
+											<Image url="@../../../../../images/select_btn.png" />
+										</image>
+									</ImageView>
+								</graphic>
+							</ToggleButton>							
+							<ToggleButton styleClass="list-btn" fx:id="editListBtn" text="Modifica lista" disable="true" onAction="#showEditForm" onMousePressed="#updateSelectedListBtn">
+								<graphic>
+									<ImageView styleClass="list-btn-graphic" fx:id="editListGraphic" fitWidth="20" fitHeight="20">
+										<image>
+											<Image url="@../../../../../images/edit_btn.png" />
+										</image>
+									</ImageView>
+								</graphic>
+							</ToggleButton>									
+							<Button styleClass="list-btn" fx:id="delListBtn" text="Cancella lista" disable="true" onAction="#deleteList">
+								<graphic>
+									<ImageView styleClass="list-btn-graphic" fx:id="delListGraphic" fitWidth="20" fitHeight="20">
+										<image>
+											<Image url="@../../../../../images/del_btn.png" />
+										</image>
+									</ImageView>
+								</graphic>
+							</Button>											
+						</items>					
+					</ToolBar>
+					
+					<!-- Form ListButton -->
+										
+					<!-- Container -->
+					
+					<ScrollPane fx:id="listContainerScroll" VBox.vgrow="ALWAYS" fitToWidth="true" fitToHeight="true">
+						<content>
+							<!-- ListContainer -->
+							
+							<FlowPane fx:id="listContainer" alignment="TOP_LEFT" hgap="40" vgap="40" onMousePressed="#closeSelected">
+								<children>
+									<Text styleClass="placeholder-list-container" fx:id="placeholderList" text="Nessuna lista" />
+								</children>
+							</FlowPane>
+						</content>
+					</ScrollPane>
+					
+					<!-- HIDDEN SECTION -->
+							
+					<fx:define>
+							
+							<!-- MediaList -->
+						
+							<HBox fx:id="mediaList" VBox.vgrow="ALWAYS" spacing="0">
+								<children>
+									<GridPane fx:id="mediaListContentWrapper" alignment="TOP_CENTER" BorderPane.alignment="CENTER" vgap="0" gridLinesVisible="FALSE">
+										<children>
+											<Label fx:id="mediaListName" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.halignment="LEFT"  GridPane.valignment="BOTTOM" />
+											<ImageOptimizer fx:id="mediaListIcon" preserveRatio="true" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.valignment="TOP" />
+											<Label fx:id="mediaListLbl" styleClass="media-list-label" text="Contenuto della lista" GridPane.rowIndex="3" GridPane.columnIndex="0"  GridPane.halignment="CENTER" />																					
+											<Separator styleClass="media-list-separator, top"  GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.halignment="CENTER" />
+											<ListView fx:id="mediaListView" GridPane.rowIndex="4" GridPane.columnIndex="0">
+												<placeholder>
+													<Label fx:id="emptyListLbl" styleClass="placeholder" text="Lista vuota" contentDisplay="TOP" opacity=".3" minHeight="0">
+														<graphic>
+															<ImageView fx:id="emptyListImg" fitWidth="32.0" fitHeight="32.0">
+																<image>																
+																	<Image url="@../../../../../images/empty_list.png" />
+																</image>
+															</ImageView>
+														</graphic>
+													</Label>
+												</placeholder>
+											</ListView>
+											<Separator styleClass="media-list-separator, bottom"  GridPane.rowIndex="5" GridPane.columnIndex="0" GridPane.halignment="CENTER" />
+											<Label fx:id="mediaListSize" text="0 elementi" GridPane.rowIndex="6" GridPane.columnIndex="0" GridPane.halignment="RIGHT" />																						
+										</children>
+										<columnConstraints>
+											<ColumnConstraints percentWidth="100" />
+										</columnConstraints>											
+										<rowConstraints>			
+											<RowConstraints vgrow="NEVER" />			
+											<RowConstraints vgrow="NEVER" />
+											<RowConstraints vgrow="NEVER" />
+											<RowConstraints vgrow="NEVER" />												
+											<RowConstraints vgrow="ALWAYS" minHeight="40.0" />
+											<RowConstraints vgrow="NEVER" />
+										</rowConstraints>											
+									</GridPane>
+									<Separator styleClass="media-list-separator"  orientation="VERTICAL" />
+									<VBox fx:id="mediaListInfoWrapper" alignment="CENTER" HBox.hgrow="ALWAYS" disable="TRUE">
+										<children>
+											<EditTextField fx:id="titleMedia" styleClass="editable" textAlignment="CENTER" editBtnValignment="CENTER" maxLength="200" VBox.vgrow="NEVER" disable="TRUE" onAction="#updateMediaTitle" maxWidth="1000" />
+											<ToolBar fx:id="mediaToolBar" VBox.vgrow="NEVER">
+												<Button fx:id="downMediaBtn" styleClass="media-btn" text="Download" minWidth="-Infinity" onAction="#downloadMediaInList">
+													<graphic>
+														<ImageView fx:id="onlineCheckGraphic" fitWidth="17.5" fitHeight="17.5">
+															<image>
+																<Image url="@../../../../../images/down.png" />
+															</image>
+														</ImageView>
+													</graphic>												
+												</Button>
+												<Button fx:id="streamMediaBtn" styleClass="media-btn" text="Streaming" minWidth="-Infinity" onAction="#streamingFromMediaList">
+													<graphic>
+														<ImageView fx:id="onlineCheckGraphic" fitWidth="18" fitHeight="19">
+															<image>
+																<Image url="@../../../../../images/play.png" />
+															</image>
+														</ImageView>
+													</graphic>													
+												</Button>
+												<Button fx:id="removeMediaBtn" styleClass="media-btn" text="Rimuovi" minWidth="-Infinity" onAction="#removeMedia">
+													<graphic>
+														<ImageView fx:id="onlineCheckGraphic" fitWidth="17" fitHeight="17.5">
+															<image>
+																<Image  url="@../../../../../images/canc.png" />
+															</image>
+														</ImageView>
+													</graphic>
+												</Button>												
+												<Region HBox.hgrow="ALWAYS" minWidth="10" />
+												<Button fx:id="onlineCheckBtn" styleClass="media-btn" text="Verifica disponibilità" minWidth="-Infinity" onAction="#checkOnlineMedia">		
+													<graphic>
+														<ImageView fx:id="onlineCheckGraphic" fitWidth="17.5" fitHeight="17.5">
+															<image>
+																<Image  url="@../../../../../images/check.png" />
+															</image>
+														</ImageView>
+													</graphic>
+												</Button>					
+											</ToolBar>
+											<GridPane fx:id="mediaInfoContent" VBox.vgrow="ALWAYS" alignment="TOP_LEFT" minWidth="0" vgap="5">
+												<children>
+													<HBox styleClass="not-editable-box" alignment="TOP_LEFT" spacing="5"  GridPane.rowIndex="0" GridPane.columnIndex="0" minHeight="0">
+														<children>
+															<Text styleClass="role-text" fx:id="originalNameMediaText" text="Nome:" />									
+															<Label fx:id="originalNameMedia" styleClass="not-editable" minHeight="-Infinity" />
+														</children>
+													</HBox>
+													<HBox styleClass="not-editable-box" alignment="TOP_LEFT" spacing="5" GridPane.rowIndex="1" GridPane.columnIndex="0" minHeight="0">
+														<children>
+															<Text fx:id="sizeMediaText" styleClass="role-text" text="Dimensione:" />									
+															<Label fx:id="sizeMedia" styleClass="not-editable" minHeight="-Infinity" />
+														</children>
+													</HBox>
+													<HBox styleClass="not-editable-box" alignment="TOP_LEFT" spacing="5" GridPane.rowIndex="2" GridPane.columnIndex="0" minHeight="0">
+														<children>
+															<Text fx:id="mimeMediaText" styleClass="role-text" text="Mime-Type:" />									
+															<Label fx:id="mimeMedia" styleClass="not-editable" minHeight="-Infinity" />
+														</children>
+													</HBox>
+													<HBox styleClass="not-editable-box" alignment="TOP_LEFT" spacing="5" GridPane.rowIndex="3" GridPane.columnIndex="0" minHeight="0">
+														<children>
+															<Text fx:id="extMediaText" styleClass="role-text" text="Estensione" />									
+															<Label fx:id="extMedia" styleClass="not-editable" minHeight="-Infinity" />
+														</children>
+													</HBox>
+													<HBox styleClass="not-editable-box" alignment="TOP_LEFT" spacing="5" GridPane.rowIndex="4" GridPane.columnIndex="0" minHeight="0">
+														<children>
+															<Text fx:id="sourceMediaText" styleClass="role-text" text="Source:" />									
+															<Label fx:id="sourceMedia" styleClass="not-editable" minHeight="-Infinity" />
+														</children>
+													</HBox>
+													<HBox styleClass="not-editable-box" alignment="TOP_LEFT" spacing="5" GridPane.rowIndex="5" GridPane.columnIndex="0" minHeight="0">
+														<children>
+															<Text fx:id="hosterMediaText" styleClass="role-text" text="Hoster:" />									
+															<Label fx:id="hosterMedia" styleClass="not-editable" minHeight="-Infinity" />
+														</children>
+													</HBox>
+													<HBox styleClass="not-editable-box" alignment="TOP_LEFT" spacing="5" GridPane.rowIndex="6" GridPane.columnIndex="0" minHeight="0">
+														<children>
+															<Text fx:id="segmentMediaText" styleClass="role-text" text="Segmenti:" />									
+															<Label fx:id="segmentMedia" styleClass="not-editable" minHeight="-Infinity" />
+														</children>
+													</HBox>
+													<HBox styleClass="not-editable-box" alignment="TOP_LEFT" spacing="5" GridPane.rowIndex="7" GridPane.columnIndex="0" minHeight="0">
+														<children>
+															<Text fx:id="lastScannerText" styleClass="role-text" text="Ultima scansione:" />									
+															<Label fx:id="lastScanner" styleClass="not-editable" minHeight="-Infinity" />
+														</children>
+													</HBox>
+													<HBox styleClass="not-editable-box" alignment="TOP_LEFT" spacing="5" GridPane.rowIndex="8" GridPane.columnIndex="0" minHeight="0">
+														<children>
+															<Text fx:id="availableText" styleClass="role-text" text="Disponibilità:" />									
+															<Label fx:id="available" styleClass="not-editable" minHeight="-Infinity" />
+														</children>
+													</HBox>													
+													<EditTextField fx:id="descriptionMedia" title="Descrizione:"  GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.rowSpan="9" editBtnValignment="CENTER" GridPane.halignment="RIGHT" textAlignment="LEFT" resizable="true" disable="TRUE" onAction="#updateMediaDescription" alignment="TOP_CENTER" maxWidth="500" />												
+												</children>
+												<columnConstraints>
+													<ColumnConstraints hgrow="SOMETIMES" minWidth="0" prefWidth="0" />
+													<ColumnConstraints hgrow="SOMETIMES" minWidth="0" prefWidth="0" />
+												</columnConstraints>			
+												<rowConstraints>
+													<RowConstraints vgrow="SOMETIMES" minHeight="0" />
+													<RowConstraints vgrow="SOMETIMES" minHeight="0"/>						
+													<RowConstraints vgrow="SOMETIMES" minHeight="0"/>
+													<RowConstraints vgrow="SOMETIMES" minHeight="0"/>			
+													<RowConstraints vgrow="SOMETIMES" minHeight="0"/>			
+													<RowConstraints vgrow="SOMETIMES" minHeight="0"/>			
+													<RowConstraints vgrow="SOMETIMES" minHeight="0"/>																
+													<RowConstraints vgrow="SOMETIMES" minHeight="0"/>
+													<RowConstraints vgrow="ALWAYS" minHeight="0"/>													
+												</rowConstraints>												
+											</GridPane>																																																																																												
+										</children>								
+									</VBox>
+								</children>
+							</HBox>
+														
+						</fx:define>
+							
+						<!-- END HIDDEN SECTION -->
+
+				</children>
+			</VBox>
+			
+			<!-- END MyLIST SECTION -->
+			
+			<!-- SCANNER SECTIONS -->
+		
+			<GridPane fx:id="urlScannerPane" vgap="10" hgap="20" gridLinesVisible="false">
+				<padding>
+					<Insets top="10" bottom="10" left="15" right="15" />
+				</padding>
+				<children>
+					<Label fx:id="urlLabel" styleClass="simple_label" text="Inserisci l'URL da analizzare:" GridPane.columnIndex="0" GridPane.rowIndex="0" minWidth="-Infinity"/>
+					<HBox fx:id="urlWrapper" spacing="20" GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="CENTER_LEFT" minWidth="-Infinity" onKeyPressed="#enterPressed">
+						<children>
+							<TextField fx:id="urlTextField" HBox.hgrow="ALWAYS" promptText="http://example.com/" />
+							<Button fx:id="urlButton" text="Analizza" HBox.hgrow="ALWAYS" onAction="#analyzeURL" minWidth="-Infinity" />
+						</children>
+					</HBox>
+					
+					<!-- Result List -->
+					
+					<ListView fx:id="resultList" GridPane.rowIndex="2" GridPane.columnIndex="0" onMouseClicked="#outResultList" minWidth="-Infinity">
+						<items>	</items>
+					</ListView>
+					<HBox fx:id="boxBtn" spacing="10" GridPane.rowIndex="3" GridPane.columnIndex="0" alignment="CENTER">
+						<padding>
+							<Insets top="0" bottom="0" left="0" right="0" />
+						</padding>
+						<GridPane.margin>
+							<Insets top="-5" bottom="5" left="0" right="0" />
+						</GridPane.margin>
+						<Region styleClass="_filler"  HBox.hgrow="ALWAYS" />
+						<Button fx:id="clearNotFoundBtn" text="Rimuovi non trovati" disable="true"  onAction="#clearNotFound"/>					
+						<Button fx:id="clearBtn" text="Cancella lista" disable="true" onAction="#clearAll"/>
+					</HBox>
+					
+					<!-- Destination Directory Chooser -->
+					
+					<HBox fx:id="dirChooser" GridPane.rowIndex="4" GridPane.columnIndex="0" alignment="CENTER" onKeyPressed="#enterPressed">
+						<GridPane.margin>
+							<Insets top="0" bottom="20" left="0" right="0" />
+						</GridPane.margin>
+						<children>
+							<Label fx:id="downloadDirLbl" styleClass="simple_label" HBox.hgrow="NEVER" text="Salva in">
+								<HBox.margin>
+									<Insets top="0" right="10" bottom="0" left="0" />
+								</HBox.margin>
+							</Label>
+							<TextField fx:id="downloadDirTxt" editable="FALSE" HBox.hgrow="ALWAYS" />
+							<Button fx:id="downloadDirBtn" styleClass="dir_chooser_btn" text="Sfoglia" onAction="#browse" HBox.hgrow="NEVER" />
+							<Button fx:id="openFolderBtn" styleClass="dir_chooser_btn" text="Apri Cartella" onAction="#openDownloadFolder" HBox.hgrow="NEVER">
+								<HBox.margin>
+									<Insets top="0" right="10" bottom="0" left="10" />
+								</HBox.margin>							
+							</Button>
+						</children>						
+					</HBox>
+					
+					<!-- Media Info -->
+					
+					<VBox fx:id="mediaInfoWrapper" spacing="0" GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.rowSpan="1">
+						<padding>
+							<Insets top="10" bottom="10" left="0" right="0" />
+						</padding>
+						<children>
+							<VBox styleClass="infoWrapper" alignment="TOP_CENTER">
+								<children>
+									<HBox styleClass="infoHeader" fx:id="mediaName" spacing="10">
+										<children>
+											<Label fx:id="mediaNameLbl" styleClass="info, simple_label" text="Name: "  minWidth="-Infinity" />
+											<Region HBox.hgrow="ALWAYS" />						
+											<ImageView styleClass="arrow_down" fitWidth="9" fitHeight="13">
+												<image>
+													 <Image url="@../../../../../images/arrow_down.png" />
+												</image>
+											</ImageView>
+										</children>
+									</HBox>
+									<TextArea prefRowCount="0" styleClass="text_info" editable="false" fx:id="name" wrapText="true" text="" VBox.vgrow="NEVER"  />						
+								</children>
+							</VBox>
+							<VBox styleClass="infoWrapper" alignment="TOP_CENTER">
+								<children>
+									<HBox styleClass="infoHeader" fx:id="mediaSize" spacing="10">
+										<children>
+											<Label fx:id="mediaSizeLbl" styleClass="info, simple_label" text="Dimensione: "  minWidth="-Infinity" />
+											<Region HBox.hgrow="ALWAYS" />								
+											<ImageView styleClass="arrow_down" fitWidth="9" fitHeight="13">
+												<image>
+													 <Image url="@../../../../../images/arrow_down.png" />
+												</image>
+											</ImageView>
+										</children>
+									</HBox>
+									<TextArea prefRowCount="0" styleClass="text_info" editable="false" fx:id="size" wrapText="true" text="" VBox.vgrow="NEVER"  />
+								</children>
+							</VBox>
+							<VBox styleClass="infoWrapper" alignment="TOP_CENTER">
+								<children>
+									<HBox styleClass="infoHeader" fx:id="mediaSource" spacing="10">
+										<children>
+											<Label  fx:id="mediaSourceLbl" styleClass="info, simple_label" text="Source: "  minWidth="-Infinity" />
+											<Region HBox.hgrow="ALWAYS" />								
+											<ImageView styleClass="arrow_down" fitWidth="9" fitHeight="13">
+												<image>
+													 <Image url="@../../../../../images/arrow_down.png" />
+												</image>
+											</ImageView>
+										</children>
+									</HBox>
+									<TextArea prefRowCount="0" styleClass="text_info" editable="false" fx:id="source" wrapText="true" text="" VBox.vgrow="NEVER"  />															
+								</children>
+							</VBox>
+							<VBox styleClass="infoWrapper" alignment="TOP_CENTER">
+								<children>
+									<HBox styleClass="infoHeader" fx:id="mediaHoster" spacing="10">
+										<children>
+											<Label fx:id="mediaHosterLbl" styleClass="info, simple_label" text="Hoster: " minWidth="-Infinity"/>
+											<Region HBox.hgrow="ALWAYS" />
+											<ImageView styleClass="arrow_down" fitWidth="9" fitHeight="13">
+												<image>
+													 <Image url="@../../../../../images/arrow_down.png" />
+												</image>
+											</ImageView>							
+										</children>
+									</HBox>
+									<TextArea prefRowCount="0" styleClass="text_info" editable="false" fx:id="hoster" wrapText="true" text="" VBox.vgrow="NEVER"  />															
+								</children>
+							</VBox>
+							<VBox styleClass="infoWrapper" alignment="TOP_CENTER">
+								<children> 
+									<HBox styleClass="infoHeader" fx:id="mediaState" spacing="10">
+										<children>
+											<Label fx:id="mediaStateLbl" styleClass="info, simple_label" text="Stato: "  minWidth="-Infinity" />
+											<Region HBox.hgrow="ALWAYS" />
+											<ImageView styleClass="arrow_down" fitWidth="9" fitHeight="13">
+												<image>
+													 <Image url="@../../../../../images/arrow_down.png" />
+												</image>
+											</ImageView>
+										</children>
+									</HBox>
+									<TextArea prefRowCount="0" styleClass="text_info" editable="false" fx:id="state"  wrapText="true" text="" VBox.vgrow="NEVER"  />															
+								</children>
+							</VBox>
+						</children>
+					</VBox>
+				</children>
+				<columnConstraints>
+					<ColumnConstraints hgrow="ALWAYS" />
+					<ColumnConstraints maxWidth="260" minWidth="260" hgrow="NEVER" />
+				</columnConstraints>			
+				<rowConstraints>
+					<RowConstraints vgrow="NEVER" />
+					<RowConstraints vgrow="NEVER" />						
+					<RowConstraints vgrow="ALWAYS" />			
+					<RowConstraints vgrow="NEVER" />	
+				</rowConstraints>
+			</GridPane>
+			
+			<!-- END SCANNER SECTIONS -->
+			
+			<!-- HISTORY SECTION -->
+			
+			<BorderPane fx:id="historyPane" minWidth="0.0">
+				<top>
+					<GridPane fx:id="headHistory" minHeight="50.0" alignment="CENTER_LEFT" >
+						<children>
+							<Label fx:id="historyHeadLbl" text="Cronologia" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.valignment="CENTER" GridPane.halignment="LEFT"/>
+							<ToolBar fx:id="historyToolbar"  GridPane.rowIndex="0" GridPane.columnIndex="1" minHeight="0" maxHeight="-Infinity" GridPane.valignment="CENTER" GridPane.halignment="RIGHT">
+								<items>
+									<Region HBox.hgrow="ALWAYS" />
+									<MenuButton fx:id="filterSection" text="Filtri ricerca">
+										<fx:define>																	
+											<ToggleGroup fx:id="sizeGroup" />
+											<ToggleGroup fx:id="stateGroup" />											
+										</fx:define>
+										<items>
+											<CustomMenuItem styleClass="not-selecteble-menu-item" hideOnClick="FALSE">
+												<content>
+													<Label fx:id="searchWithinLbl" text="Cerca all'interno di" />
+												</content>
+											</CustomMenuItem>
+											<CheckMenuItem styleClass="" fx:id="nameCheck" text="Nome" />
+											<CheckMenuItem styleClass="selecatble-menu-item" fx:id="urlCheck" text="URL" />
+											<CheckMenuItem styleClass="selecatble-menu-item" fx:id="hosterCheck" text="Hoster" />										
+											<CustomMenuItem styleClass="not-selecteble-menu-item" hideOnClick="FALSE">
+												<content>
+													<Label fx:id="stateFilterLbl" text="Stato" />
+												</content>
+											</CustomMenuItem>
+											<RadioMenuItem styleClass="selecatble-menu-item" fx:id="onlineCheck" text="Online" toggleGroup="$stateGroup"/>
+											<RadioMenuItem styleClass="selecatble-menu-item" fx:id="offlineCheck" text="Offline" toggleGroup="$stateGroup"/>											
+											<CustomMenuItem styleClass="not-selecteble-menu-item" hideOnClick="FALSE">
+												<content>
+													<Label fx:id="sizeFilterLbl" text="Dimensione" />
+												</content>
+											</CustomMenuItem>
+											<RadioMenuItem styleClass="selecatble-menu-item" fx:id="minMB" text="&#60; 1 MB" toggleGroup="$sizeGroup" />
+											<RadioMenuItem styleClass="selecatble-menu-item" fx:id="btwOneFiftyMB" text="1 MB - 50 MB" toggleGroup="$sizeGroup" />
+											<RadioMenuItem styleClass="selecatble-menu-item" fx:id="btwFiftyTwoFiftyMB" text="50 MB - 250 MB" toggleGroup="$sizeGroup" />
+											<RadioMenuItem styleClass="selecatble-menu-item" fx:id="btwTwoFiftyFivHundMB" text="250 MB - 500 MB" toggleGroup="$sizeGroup" />
+											<RadioMenuItem styleClass="selecatble-menu-item" fx:id="btwFivHundOneMBGB" text="500 MB - 1 GB" toggleGroup="$sizeGroup" />
+											<RadioMenuItem styleClass="selecatble-menu-item" fx:id="greatGB" text="&#62; 1 GB" toggleGroup="$sizeGroup" />						
+										</items>
+									</MenuButton>
+									<HBox fx:id="queryTextFieldWrapper" HBox.hgrow="ALWAYS" maxWidth="-Infinity">
+										<children>
+											<HBox fx:id="filterWrapper" minWidth="0" maxWidth="-Infinity" maxHeight="0" StackPane.alignment="TOP_LEFT" />										
+											<TextField fx:id="queryHistory" minWidth="260" promptText="Cerca nella cronologia" onMouseMoved="#changeCursor" onMouseClicked="#closeHistorySearch"/>
+										</children>
+									</HBox>							
+								</items>
+							</ToolBar>						
+						</children>
+						<columnConstraints>
+							<ColumnConstraints hgrow="NEVER" />
+							<ColumnConstraints hgrow="ALWAYS" />
+						</columnConstraints>				
+					</GridPane>
+				</top>
+				<left>
+					<VBox fx:id="historyLeftSide" prefWidth="250">
+						<children>
+							<TreeView fx:id="dateView" VBox.vgrow="ALWAYS" onContextMenuRequested="#dateContextMenuInitializate">
+								<contextMenu>
+									<ContextMenu fx:id="dateViewContextMenu">
+										<items>
+											<MenuItem fx:id="removeDate" text="Elimina" disable="TRUE"  onAction="#removeDate" />
+										</items>
+									</ContextMenu>
+								</contextMenu>
+							</TreeView>
+						</children>
+					</VBox>
+				</left>
+				<center>		
+				<StackPane fx:id="historyWrapper" alignment="CENTER">
+					<BorderPane.margin>
+						<Insets top="0" bottom="0" left="0" right="0" />
+					</BorderPane.margin>				
+					<children>
+						<ScrollPane fx:id="historyScrollWrapper" fitToWidth="TRUE" fitToHeight="TRUE" minWidth="0.0">
+							<StackPane.margin>
+								<Insets top="0" bottom="0" left="0" right="0" />
+							</StackPane.margin>							
+							<content>	
+								<VBox fx:id="historyContent" alignment="TOP_CENTER" spacing="0">								
+									<children>
+										<VBox fx:id="mainCheckWrapper" alignment="TOP_LEFT" visible="FALSE" disable="TRUE" minHeight="0.0">
+											<children>
+												<CheckBox fx:id="mainCheck" text="Seleziona tutto" onAction="#selectAllHistory" />											
+											</children>
+										</VBox>
+									</children>
+								</VBox>		
+							</content>
+						</ScrollPane>
+						<HBox fx:id="selButtons" maxHeight="-Infinity" StackPane.alignment="TOP_CENTER" disable="TRUE" visible="FALSE" alignment="CENTER" spacing="10">
+							<children>
+								<Button fx:id="closeSelHistoryBtn" onAction="#closeHistorySelectionMode" />
+								<Label fx:id="selHistorySize" text="0 elementi selezionati" />
+								<Region HBox.hgrow="ALWAYS" />
+								<Button fx:id="delSelHistoryBtn" text="Cancella selezionati" disable="TRUE" onAction="#removeSelHistoryEntries" />								
+							</children>
+						</HBox>
+					</children>
+				</StackPane>					
+				<fx:define>
+					<VBox fx:id="emptyHistory" alignment="CENTER">
+						<children>
+							<Label fx:id="emptyHistoryLbl" text="Nessun elemento" />
+						</children>
+					</VBox>
+				</fx:define>
+				</center>
+			</BorderPane>
+			
+			<!-- END HISTORY SECTION -->
+			
+			
+			
+			<!-- SETTINGS SECTION -->
+			
+			<VBox fx:id="settingsPane">
+				<children>
+					<HBox fx:id="settingHeader" alignment="CENTER_LEFT" spacing="0">
+						<children>
+							<ImageView fx:id="settingImage" fitWidth="55" fitHeight="55">
+								<image>
+									<Image url="@../../../../../images/setting_header.png" />
+								</image>
+							</ImageView>
+							<Label fx:id="settingLbl" text="%setting.sec.btn" />
+						</children>
+					</HBox>
+					<ToolBar fx:id="settingBackWrapper" visible="FALSE" scaleY="0.0">
+						<items>
+							<Button fx:id="settingBackTitleBtn" onAction="#backToSettings" />													
+						</items>
+					</ToolBar>
+					<ScrollPane fx:id="scrollSettingContent" VBox.vgrow="ALWAYS" fitToWidth="TRUE" fitToHeight="TRUE">
+						<content>
+							<FlowPane fx:id="settingContent" hgap="20" vgap="20" alignment="CENTER">
+								<children>
+									<SettingButton fx:id="generalBtn" text="%general" imageURL="@../../../../../images/_settings.png" imageWidth="40" imageHeight="40" onAction="#showGeneral">
+										<FlowPane.margin>
+											<Insets top="-80" left="0" bottom="0" right="0" />
+										</FlowPane.margin>									
+									</SettingButton>
+									<SettingButton fx:id="downloadBtn" text="Download" imageURL="@../../../../../images/_download.png" imageWidth="40" imageHeight="40" onAction="#showDownload">
+										<FlowPane.margin>
+											<Insets top="-80" left="0" bottom="0" right="0" />
+										</FlowPane.margin>									
+									</SettingButton>									
+									<SettingButton fx:id="listsBtn" text="%lists" imageURL="@../../../../../images/lists.png" imageWidth="40" imageHeight="40" onAction="#showLists">
+										<FlowPane.margin>
+											<Insets top="-80" left="0" bottom="0" right="0" />
+										</FlowPane.margin>									
+									</SettingButton>									
+									<SettingButton fx:id="connectionBtn" text="%history.sec.btn" imageURL="@../../../../../images/connection.png" imageWidth="40" imageHeight="40" onAction="#showConnection">
+										<FlowPane.margin>
+											<Insets top="-80" left="0" bottom="0" right="0" />
+										</FlowPane.margin>									
+									</SettingButton>									
+									<SettingButton fx:id="playerBtn" text="Video Player" imageURL="@../../../../../images/player.png" imageWidth="40" imageHeight="40" onAction="#showPlayer">
+									<FlowPane.margin>
+											<Insets top="-80" left="0" bottom="0" right="0" />
+										</FlowPane.margin>									
+									</SettingButton>
+								</children>
+							</FlowPane>
+						</content>
+					</ScrollPane>
+					
+					<fx:define>
+						
+						<!-- General Settings -->
+						
+						<GridPane fx:id="generalSettings" styleClass="settings-container" vgap="25" hgap="30" alignment="TOP_LEFT">
+							<children>
+								<Fieldset fx:id="langWrapper" title="%lang"  hgap="10" GridPane.rowIndex="0" GridPane.columnIndex="0">
+									<content>
+										<Label fx:id="langLbl" text="%lang.ui" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+										<ComboBox fx:id="langBox" GridPane.rowIndex="0" GridPane.columnIndex="1" />									
+									</content>					
+								</Fieldset>							
+								<Fieldset fx:id="startOptionsWrapper" title="%startup.options" vgap="5" GridPane.rowIndex="1" GridPane.columnIndex="0">
+									<content>
+										<CheckBox styleClass="super-check" fx:id="startupCheck" text="%startup" GridPane.rowIndex="0" GridPane.columnIndex="0" onAction="#onStartup" />
+										<fx:define>
+											<ToggleGroup fx:id="startupGroup" />
+										</fx:define>										
+										<RadioButton styleClass="sub-check"  fx:id="startMinCheck" text="%start.minimize" toggleGroup="$startupGroup" GridPane.rowIndex="1" GridPane.columnIndex="0" onMousePressed="#toggleSelection" />
+										<RadioButton styleClass="sub-check" fx:id="startTrayCheck" text="%start.icon.tray" toggleGroup="$startupGroup" GridPane.rowIndex="2" GridPane.columnIndex="0" onMousePressed="#toggleSelection" />									
+									</content>					
+								</Fieldset>
+								<Fieldset fx:id="exitOptionsWrapper" title="%exit.options" vgap="5" GridPane.rowIndex="2" GridPane.columnIndex="0">
+									<content>
+										<fx:define>
+											<ToggleGroup fx:id="extOptionsGroup" />
+										</fx:define>	
+										<RadioButton fx:id="exitConfirmCheck" text="%exit.confirm" toggleGroup="$extOptionsGroup" GridPane.rowIndex="0" GridPane.columnIndex="0" selected="TRUE" />
+										<RadioButton fx:id="exitRequestCheck" text="%exit.request" toggleGroup="$extOptionsGroup" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+										<RadioButton fx:id="exitTrayIconCheck" text="%exit.tray.request" toggleGroup="$extOptionsGroup" GridPane.rowIndex="2" GridPane.columnIndex="0" />							
+									</content>					
+								</Fieldset>
+							 	<HBox styleClass="restoreWrapper" GridPane.rowIndex="3" GridPane.columnIndex="0" alignment="CENTER_RIGHT">			
+									<children>
+										<Button fx:id="restoreGenBtn" styleClass="restore-setting-btn" text="%restore.default" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.halignment="RIGHT" onAction="#restoreGeneralSettings" />
+									</children>
+								</HBox>							
+							</children>
+							<columnConstraints>
+								<ColumnConstraints hgrow="ALWAYS" />
+							</columnConstraints>										
+						</GridPane>
+						
+						<!-- Download Settings -->
+						
+						<GridPane fx:id="downloadSettings" styleClass="settings-container" vgap="25" hgap="30" alignment="TOP_LEFT">
+							<children>
+								<Fieldset fx:id="generalDownOptions" title="%general.options" vgap="5" hgap="10" GridPane.rowIndex="0" GridPane.columnIndex="0">
+									<content>
+										<Label fx:id="simultaneousLbl" text="%max.simultaneous.download" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+										<ComboBox fx:id="simultaneousBox" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+										<CheckBox fx:id="modeAutoStartup" text="%mode.out.startup" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="2"/>																																													
+									</content>					
+								</Fieldset>							
+								<Fieldset fx:id="removalDownOptions" title="%removal.options" vgap="5" hgap="10" GridPane.rowIndex="1" GridPane.columnIndex="0">
+									<content>
+										<CheckBox styleClass="super-check" fx:id="deleteAutoCheck" text="%delete.auto" GridPane.rowIndex="0" GridPane.columnIndex="0" />										
+										<fx:define>
+											<ToggleGroup fx:id="autoRemoveGroup" />
+										</fx:define>										
+										<RadioButton styleClass="sub-check" fx:id="onlyCompleteCheck" text="%only.completed" toggleGroup="$autoRemoveGroup" GridPane.rowIndex="1" GridPane.columnIndex="0" onMousePressed="#toggleSelection" />
+										<RadioButton styleClass="sub-check, super-check" fx:id="onlyInterruptedCheck" text="%only.interrupted" toggleGroup="$autoRemoveGroup" GridPane.rowIndex="2" GridPane.columnIndex="0" onMousePressed="#toggleSelection" />
+										<CheckBox fx:id="confirmDelDownCheck" text="%confirm.remove.download" GridPane.rowIndex="4" GridPane.columnIndex="0" />																					
+									</content>				
+								</Fieldset>
+								<Fieldset fx:id="statisticsOptions" title="%statistics.options" vgap="5" hgap="100" GridPane.rowIndex="2" GridPane.columnIndex="0">
+									<content>
+										<Label fx:id="delayUpdateLbl" text="1 sec" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS">
+											<graphic>
+												<Text fx:id="delayText" text="%delay.update.charts"/>
+											</graphic>
+										</Label>
+										<Slider fx:id="delaySlider" min="1.0" value="1.0" max="300"  GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" />
+										<Label fx:id="enableDisableLbl" text="%enable.disable" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.columnSpan="2" />
+										<CheckBox fx:id="mainChartCheck" text="%main.chart" GridPane.rowIndex="4" GridPane.columnIndex="0" onAction="#enableDisableChart" />	
+										<CheckBox fx:id="singleChartCheck" text="%single.chart" GridPane.rowIndex="4" GridPane.columnIndex="1" onAction="#enableDisableChart" />
+										<Button fx:id="resetStatisticsBtn" styleClass="setting-btn" text="%reset.statistics" GridPane.rowIndex="6" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="LEFT" onAction="#resetStatistics"/>																																								
+									</content>
+									<rowConstraints>
+										<RowConstraints />
+										<RowConstraints />
+										<RowConstraints minHeight="10" />		
+										<RowConstraints />	
+										<RowConstraints />											
+										<RowConstraints minHeight="15"  />
+										<RowConstraints />
+									</rowConstraints>
+									<columnConstraints>
+										<ColumnConstraints hgrow="NEVER" />
+										<ColumnConstraints hgrow="ALWAYS" />										
+									</columnConstraints>																				
+								</Fieldset>								
+								<Fieldset fx:id="saveDownOptions" title="%store.options" vgap="10" hgap="10" GridPane.rowIndex="3" GridPane.columnIndex="0">
+									<content>
+										<Label fx:id="downPathLbl" text="%save.down.path" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.halignment="RIGHT" />
+										<TextField fx:id="downPathText" styleClass="browse-text-field" editable="FALSE" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS"  onMouseMoved="#changeCursor" onMouseClicked="#changeDownloadPath" />
+										<Button fx:id="openDownFolder" styleClass="setting-btn"  text="%open.folder" GridPane.rowIndex="0" GridPane.columnIndex="2" onAction="#openDownloadFolder" />
+										<Label fx:id="downStoreLbl" text="%store.down.path" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.halignment="RIGHT" />
+										<TextField fx:id="downStoreText" styleClass="browse-text-field" editable="FALSE" GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS"  onMouseMoved="#changeCursor" onMouseClicked="#changeDownloadListStorePath" />
+										<Button fx:id="openDownStoreFolder" styleClass="setting-btn"  text="%open.folder" GridPane.rowIndex="1" GridPane.columnIndex="2" onAction="#openStoreDownloadListFolder" />
+									</content>					
+								</Fieldset>
+							 	<HBox styleClass="restoreWrapper" GridPane.rowIndex="4" GridPane.columnIndex="0" alignment="CENTER_RIGHT">				
+									<children>
+										<Button fx:id="restoreDownBtn" styleClass="restore-setting-btn" text="%restore.default" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.halignment="RIGHT" onAction="#restoreDownloadSettings" />
+									</children>
+								</HBox>												
+							</children>
+							<columnConstraints>
+								<ColumnConstraints hgrow="ALWAYS" />
+							</columnConstraints>										
+						</GridPane>
+						
+
+						<!-- List Settings -->
+						
+						<GridPane fx:id="listSettings" styleClass="settings-container" vgap="25" hgap="30" alignment="TOP_LEFT">
+							<children>
+								<Fieldset fx:id="defaultsListOptions" title="%defaults.options" vgap="10" hgap="10" GridPane.rowIndex="0" GridPane.columnIndex="0">
+									<content>
+										<Label fx:id="listPathDefaultLbl" text="%list.path.default" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" />
+										<TextField fx:id="defaultListPathText" styleClass="browse-text-field" editable="FALSE" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS"  onMouseMoved="#changeCursor" onMouseClicked="#changeListsPath" />
+										<Button fx:id="openListPathFolder" styleClass="setting-btn"  text="%open.folder" GridPane.rowIndex="0" GridPane.columnIndex="3" GridPane.hgrow="NEVER" onAction="#openListPathFolder" />
+										<Label fx:id="defaultIconListLbl" text="%default.icon.list" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" />
+										<TextField fx:id="defaultIconListText" styleClass="browse-text-field" editable="FALSE" GridPane.rowIndex="1" GridPane.columnIndex="1"  GridPane.columnSpan="2" GridPane.hgrow="ALWAYS"  onMouseMoved="#changeCursor" onMouseClicked="#changeIconListsPath" />
+										<Button fx:id="openIconListFolder" styleClass="setting-btn"  text="%open.folder" GridPane.rowIndex="1" GridPane.columnIndex="3" GridPane.hgrow="NEVER" onAction="#openIconListFolder" />	
+										<Label fx:id="defaultNameListLbl" text="%default.name.list" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.halignment="RIGHT"/>
+										<TextField fx:id="defaultNameListText" editable="TRUE" GridPane.rowIndex="3" GridPane.columnIndex="1"  GridPane.hgrow="ALWAYS"  GridPane.columnSpan="1" onKeyTyped="#limitNameText" />
+										<Button fx:id="resetDefaultNameList" styleClass="setting-btn"  text="%reset" GridPane.rowIndex="3" GridPane.columnIndex="2" onAction="#resetDefaultNameList" />																										
+									</content>					
+									<rowConstraints>
+										<RowConstraints />
+										<RowConstraints />
+										<RowConstraints minHeight="10" />		
+										<RowConstraints />
+									</rowConstraints>
+									<columnConstraints>
+										<ColumnConstraints hgrow="NEVER" />
+										<ColumnConstraints hgrow="NEVER"  maxWidth="220" />																										
+										<ColumnConstraints hgrow="ALWAYS" />																	
+										<ColumnConstraints hgrow="NEVER" />								
+									</columnConstraints>																	
+								</Fieldset>
+							 	<HBox styleClass="restoreWrapper" GridPane.rowIndex="1" GridPane.columnIndex="0" alignment="CENTER_RIGHT">				
+									<children>
+										<Button fx:id="restoreListBtn" styleClass="restore-setting-btn" text="%restore.default" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.halignment="RIGHT" onAction="#restoreListsSettings" />
+									</children>
+								</HBox>																		
+							</children>
+							<columnConstraints>
+								<ColumnConstraints hgrow="ALWAYS" />								
+							</columnConstraints>										
+						</GridPane>						
+						
+						
+						<!-- Connection Settings -->
+						
+						<GridPane fx:id="connectionSettings" styleClass="settings-container" vgap="25" hgap="30" alignment="TOP_LEFT">
+							<children>
+							 	<Fieldset fx:id="storeConnectionWrapper" title="%store.options" vgap="15" hgap="10" GridPane.rowIndex="0" GridPane.columnIndex="0">
+									<content>
+										<Label fx:id="logLbl" text="%log.path" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+										<TextField fx:id="logPathText" styleClass="browse-text-field" editable="FALSE" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS"  onMouseMoved="#changeCursor" onMouseClicked="#changeLogPath" />
+										<Button fx:id="openLogFolder" styleClass="setting-btn" text="%open.folder" GridPane.rowIndex="0" GridPane.columnIndex="2" onAction="#openLogFolder" />
+										<Label fx:id="cookieLbl" text="%cookie.path" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+										<TextField fx:id="cookiePathText" styleClass="browse-text-field" editable="FALSE" GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS"  onMouseMoved="#changeCursor" onMouseClicked="#changeCookiePath" />
+										<Button fx:id="openCookieFolder" styleClass="setting-btn" text="%open.folder" GridPane.rowIndex="1" GridPane.columnIndex="2" onAction="#openCookieFolder" />
+										<Label fx:id="historyLbl" text="%history.path" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+										<TextField fx:id="historyPathText" styleClass="browse-text-field" editable="FALSE" GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS"  onMouseMoved="#changeCursor" onMouseClicked="#changeHistoryPath" />
+										<Button fx:id="openHistoryFolder" styleClass="setting-btn" text="%open.folder" GridPane.rowIndex="2" GridPane.columnIndex="2" onAction="#openHistoryFolder" />																																												
+									</content>					
+								</Fieldset>									
+							 	<HBox styleClass="restoreWrapper" GridPane.rowIndex="1" GridPane.columnIndex="0" alignment="CENTER_RIGHT">				
+									<children>
+										<Button fx:id="restoreConnBtn" styleClass="restore-setting-btn" text="%restore.default" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.halignment="RIGHT" onAction="#restoreConnectionSettings" />
+									</children>
+								</HBox>																																		
+							</children>
+							<columnConstraints>
+								<ColumnConstraints hgrow="ALWAYS" />
+							</columnConstraints>
+						</GridPane>	
+						
+						<!-- Player Settings -->
+						
+						<GridPane fx:id="playerSettings" styleClass="settings-container" vgap="25" hgap="30" alignment="TOP_LEFT">
+							<children>
+							 	<Fieldset fx:id="storePlayerWrapper" title="%store.options" vgap="15" hgap="10" GridPane.rowIndex="0" GridPane.columnIndex="0">
+									<content>
+										<Label fx:id="playerPathLbl" text="%player.path" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+										<TextField fx:id="playerPathText" styleClass="browse-text-field" editable="FALSE" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS"  onMouseMoved="#changeCursor" onMouseClicked="#changePlayerPath" />
+										<Button fx:id="openPlayerFolderBtn" styleClass="setting-btn" text="%open.folder" GridPane.rowIndex="0" GridPane.columnIndex="2" disable="TRUE" onAction="#openPlayerFolder" />
+									</content>					
+								</Fieldset>									
+							 	<HBox styleClass="restoreWrapper" GridPane.rowIndex="1" GridPane.columnIndex="0" alignment="CENTER_RIGHT">				
+									<children>
+										<Button fx:id="restorePlayerBtn" styleClass="restore-setting-btn" text="%restore.default" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.halignment="RIGHT" onAction="#restorePlayerSettings" />
+									</children>
+								</HBox>																																		
+							</children>
+							<columnConstraints>
+								<ColumnConstraints hgrow="ALWAYS" />
+							</columnConstraints>
+						</GridPane>							
+					</fx:define>
+				
+				</children>
+			</VBox>
+			
+
+			
+			<!-- END SETTINGS SECTION -->
+		
+		
+		</fx:define>
+		<!-- END HIDDEN SECTIONS -->
+		
+		<!-- DOWNLOAD SECTION -->
+		
+		<SplitPane fx:id="downloadPane" orientation="VERTICAL" dividerPositions=".46, .54">
+			<padding>
+				<Insets top="0" bottom="0" left="0" right="0" />
+			</padding>
+			<items>
+				
+				<!-- Table Download -->
+				
+				<VBox fx:id="downloadListContainer" prefWidth="-Infinity">
+					<children>
+						<TableView fx:id="downloadTableView" onMouseClicked="#outDownloadList" minWidth="0" VBox.vgrow="ALWAYS" minHeight="200">
+					       <placeholder>
+					       		<Label />
+					       </placeholder>	
+							<columns>
+								<TableColumn fx:id="indexCol" text="#   " prefWidth="60" minWidth="0" userData="#"/>
+								<TableColumn fx:id="nameCol" text="Nome" prefWidth="280" minWidth="0" userData="Nome" />
+								<TableColumn fx:id="stateCol" text="Stato" prefWidth="150" minWidth="0" userData="Stato" />							
+								<TableColumn fx:id="progressCol" text="Progresso" prefWidth="150"  minWidth="0" userData="Barra di progresso"/>
+								<TableColumn fx:id="speedCol" text="Velocità   " prefWidth="100" minWidth="0" userData="Velocità"/>							
+								<TableColumn fx:id="workDoneCol" text="Scaricati " prefWidth="100" minWidth="0" userData="Scaricati"/>
+								<TableColumn fx:id="sizeCol" text="Dimensione   " prefWidth="100" minWidth="0" userData="Dimensione"/>
+								<TableColumn fx:id="sizeRemainCol" text="Rimanenti " prefWidth="100" minWidth="0" userData="Rimenenti"/>												
+								<TableColumn fx:id="timeRemainCol" text="Tempo stimato   " prefWidth="120" minWidth="0" userData="Tempo stimato"/>
+								<TableColumn fx:id="priorityCol" text="Priorità   " prefWidth="70" minWidth="0" userData="Priorità"/>
+								<TableColumn fx:id="hosterCol" text="Hoster" prefWidth="100" minWidth="0" userData="Hoster"/>													
+								<TableColumn fx:id="pathCol" text="Salva in" prefWidth="320" minWidth="0" userData="Percorso salvataggio"/>
+							</columns>						
+						</TableView>
+					</children>
+				</VBox>
+				
+				<!-- Tabs -->
+				
+				<TabPane fx:id="tabPaneDownload" tabClosingPolicy="UNAVAILABLE" minHeight="75.0" prefHeight="357">
+					<tabs>
+					
+						<!-- InfoTab -->
+						
+						<Tab fx:id="infoTab" styleClass="tab_download" text="Informazioni">
+							<graphic>
+								<ImageView fx:id="infoHeader" styleClass="img-tab-Header" fitWidth="13.5" fitHeight="13.5" opacity="0.8">
+									<image>
+										<Image url="@../../../../../images/info3.png" />
+									</image>
+								</ImageView>
+							</graphic>	
+							<content>
+								<VBox fx:id="infoTabContent" styleClass="tab_content" spacing="0" alignment="CENTER" maxHeight="-Infinity" prefWidth="0" minWidth="0"> 
+									<children>
+										<HBox fx:id="progressSect" spacing="10" maxHeight="-Infinity" alignment="CENTER" VBox.vgrow="ALWAYS">
+											<padding>
+												<Insets top="10" left="20" bottom="10" right="10" />
+											</padding>
+											<children>
+												<Label fx:id="progressSectText" text="Avanzamento:" />
+												<ProgressBar fx:id="progBar" progress="0" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+												<Label fx:id="progPercent" text="" />
+											</children>
+										</HBox>
+										<ScrollPane fx:id="infoScroll" fitToWidth="true" fitToHeight="true">
+											<content>
+												<VBox fx:id="infoContent" spacing="30" minHeight="-Infinity">
+													<padding>
+														<Insets top="10" bottom="10" left="20" right="20" />
+													</padding>														
+													<children>						
+														<Fieldset fx:id="tansferWrapper" title="Trasferimento" maxHeight="-Infinity">
+															<content>
+																<Label fx:id="actDurationLblHead" styleClass="info_tab_text" text="Durata attività: " GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.rowSpan="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP"/>
+																<Label fx:id="actDurationLbl" styleClass="info_tab_text" text="" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.rowSpan="5" wrapText="true" GridPane.valignment="TOP" maxWidth="350"/>
+																<Label fx:id="speedLblHead" styleClass="info_tab_text" text="Velocità: " GridPane.rowIndex="5" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="TOP"/>
+																<Label fx:id="speedLbl" styleClass="info_tab_text" text="" GridPane.rowIndex="5" GridPane.columnIndex="1" GridPane.rowSpan="5" wrapText="true" GridPane.valignment="TOP" maxWidth="350"/>
+																<Label fx:id="downloadedLblHead" styleClass="info_tab_text" text="Scaricati: " GridPane.rowIndex="10" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="TOP"/>
+																<Label fx:id="downloadedLbl" styleClass="info_tab_text" text="" GridPane.rowIndex="10" GridPane.columnIndex="1" GridPane.rowSpan="5" wrapText="true" GridPane.valignment="TOP" maxWidth="350"/>
+																<Label fx:id="remainingTimeLblHead"  styleClass="info_tab_text" text="Tempo stimato: " GridPane.rowIndex="0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP"/>
+																<Label fx:id="remainingTimeLbl" styleClass="info_tab_text" text="" GridPane.rowIndex="0" GridPane.columnIndex="3" GridPane.rowSpan="5" wrapText="true" GridPane.valignment="TOP" maxWidth="350"/>
+																<Label fx:id="priorityLblHead"  styleClass="info_tab_text" text="Priorità: " textAlignment="RIGHT" GridPane.rowIndex="5" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP"/>
+																<Label fx:id="priorityLbl" styleClass="info_tab_text" text="" GridPane.rowIndex="5" GridPane.columnIndex="3" GridPane.rowSpan="5" wrapText="true" GridPane.valignment="TOP" maxWidth="350"/>
+																<Label fx:id="remainingSizeLblHead" styleClass="info_tab_text" text="Rimanente: " GridPane.rowIndex="10" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP"/>
+																<Label fx:id="remainingSizeLbl" styleClass="info_tab_text" text="" GridPane.rowIndex="10" GridPane.columnIndex="3" GridPane.rowSpan="5" wrapText="true" GridPane.valignment="TOP" maxWidth="350"/>
+																<Label fx:id="lastActLblHead" styleClass="info_tab_text" text="Ultima attività: " GridPane.rowIndex="15" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="TOP"/>
+																<Label fx:id="lastActLbl" styleClass="info_tab_text" text="" GridPane.rowIndex="15" GridPane.columnIndex="1" GridPane.rowSpan="5" wrapText="true" GridPane.valignment="TOP" maxWidth="350"/>
+																<Label fx:id="startActLblHead" styleClass="info_tab_text" text="Data creazione: " textAlignment="RIGHT" GridPane.rowIndex="15" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP"/>
+																<Label fx:id="startActLbl" styleClass="info_tab_text" text="" GridPane.rowIndex="15" GridPane.columnIndex="3" GridPane.rowSpan="5" wrapText="true" GridPane.valignment="TOP" maxWidth="350"/>																							
+															</content>
+															<columnConstraints>
+																<ColumnConstraints hgrow="ALWAYS" minWidth="-Infinity"/>
+																<ColumnConstraints hgrow="ALWAYS"/>
+																<ColumnConstraints hgrow="ALWAYS" minWidth="-Infinity"/>
+																<ColumnConstraints hgrow="ALWAYS"/>
+															</columnConstraints>
+															<rowConstraints>
+																<RowConstraints vgrow="NEVER"/>
+																<RowConstraints vgrow="NEVER"/>
+																<RowConstraints vgrow="NEVER"/>
+																<RowConstraints vgrow="NEVER"/>
+																<RowConstraints vgrow="NEVER"/>																	
+																<RowConstraints vgrow="NEVER"/>
+																<RowConstraints vgrow="NEVER"/>
+																<RowConstraints vgrow="NEVER"/>
+																<RowConstraints vgrow="NEVER"/>
+																<RowConstraints vgrow="NEVER"/>																	
+																<RowConstraints vgrow="NEVER"/>
+																<RowConstraints vgrow="NEVER"/>
+																<RowConstraints vgrow="NEVER"/>
+																<RowConstraints vgrow="NEVER"/>
+																<RowConstraints vgrow="NEVER"/>																	
+																<RowConstraints vgrow="NEVER"/>
+																<RowConstraints vgrow="NEVER"/>
+																<RowConstraints vgrow="NEVER"/>
+																<RowConstraints vgrow="NEVER"/>
+																<RowConstraints vgrow="NEVER"/>																	
+															</rowConstraints>																							
+														</Fieldset>
+														<Fieldset fx:id="mediaWrapper" title="Generale" maxHeight="-Infinity">
+															<content>
+																<Label fx:id="nameInfoLblHead" styleClass="info_tab_text" text="Name: " GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="TOP"/>
+																<Label fx:id="nameInfoLbl" styleClass="info_tab_text" text="" GridPane.rowIndex="0" GridPane.columnIndex="1"  GridPane.rowSpan="5" GridPane.valignment="TOP" maxWidth="350" wrapText="true"/>
+																<Label fx:id="mimeInfoLblHead" styleClass="info_tab_text" text="Mime-Type: " GridPane.rowIndex="5" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
+																<Label fx:id="mimeInfoLbl" styleClass="info_tab_text" text="" GridPane.rowIndex="5" GridPane.columnIndex="1" GridPane.rowSpan="5" GridPane.valignment="TOP" maxWidth="350" wrapText="true"/>													
+																<Label fx:id="sourceInfoLblHead" styleClass="info_tab_text" text="Sorgente: " GridPane.rowIndex="10" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
+																<Label fx:id="sourceInfoLbl" styleClass="info_tab_text" text="" GridPane.rowIndex="10" GridPane.columnIndex="1" GridPane.rowSpan="5" GridPane.valignment="TOP" maxWidth="350" wrapText="true"/>																										
+																<Label fx:id="sizeInfoLblHead" styleClass="info_tab_text" text="        Dimensione: " GridPane.rowIndex="0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
+																<Label fx:id="sizeInfoLbl" styleClass="info_tab_text" text="" GridPane.rowIndex="0" GridPane.columnIndex="3" GridPane.rowSpan="5"  GridPane.valignment="TOP" maxWidth="350" wrapText="true"/>																																							
+																<Label fx:id="segInfoLblHead" styleClass="info_tab_text" text="        Segmenti: " GridPane.rowIndex="5" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
+																<Label fx:id="segInfoLbl" styleClass="info_tab_text" text="" GridPane.rowIndex="5" GridPane.columnIndex="3"  GridPane.rowSpan="5" GridPane.valignment="TOP" maxWidth="350" wrapText="true"/>
+																<Label fx:id="pathInfoLblHead" styleClass="info_tab_text" text="         Percorso di salvataggio: " GridPane.rowIndex="10" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP" />
+																<Label fx:id="pathInfoLbl" styleClass="info_tab_text" text="" GridPane.rowIndex="10" GridPane.columnIndex="3"  GridPane.rowSpan="5" GridPane.valignment="TOP"   wrapText="true" maxWidth="350"/>																																																																																																																																	
+															</content>
+															<columnConstraints>
+																	<ColumnConstraints hgrow="ALWAYS" minWidth="-Infinity"/>
+																	<ColumnConstraints hgrow="ALWAYS" minWidth="100"/>
+																	<ColumnConstraints hgrow="ALWAYS" minWidth="-Infinity"/>
+																	<ColumnConstraints hgrow="ALWAYS" minWidth="100"/>
+																</columnConstraints>
+																<rowConstraints>
+																	<RowConstraints vgrow="NEVER"/>
+																	<RowConstraints vgrow="NEVER"/>
+																	<RowConstraints vgrow="NEVER"/>
+																	<RowConstraints vgrow="NEVER"/>
+																	<RowConstraints vgrow="NEVER"/>																				
+																	<RowConstraints vgrow="NEVER"/>
+																	<RowConstraints vgrow="NEVER"/>
+																	<RowConstraints vgrow="NEVER"/>
+																	<RowConstraints vgrow="NEVER"/>
+																	<RowConstraints vgrow="NEVER"/>																				
+																	<RowConstraints vgrow="NEVER"/>
+																	<RowConstraints vgrow="NEVER"/>
+																	<RowConstraints vgrow="NEVER"/>
+																	<RowConstraints vgrow="NEVER"/>
+																	<RowConstraints vgrow="NEVER"/>																				
+																</rowConstraints>													
+														</Fieldset>
+													</children>
+												</VBox>																							
+											</content>							
+										</ScrollPane>
+									</children>
+								</VBox>
+							</content>								
+						</Tab>
+						
+						<!-- StatTab -->
+											
+						<Tab fx:id="statTab" styleClass="tab_download" text="Statistiche" >
+							<graphic>
+								<ImageView fx:id="statHeader" styleClass="img-tab-Header" fitWidth="14" fitHeight="14"  opacity="0.8">
+									<image>
+										<Image url="@../../../../../images/stat.png" />
+									</image>
+								</ImageView>
+							</graphic>						
+							<content>
+								<!-- Statistic Chart -->
+							</content>
+						</Tab>
+					</tabs>
+				</TabPane>
+			</items>
+		</SplitPane>
+		
+		<!-- END DOWNLOAD SECTION -->
+		
+	</center>
+	<bottom>
+		
+		<!-- STATE BAR -->
+	
+		<HBox fx:id="stateBar" spacing="0">
+			<padding>
+				<Insets top="0" left="0" right="0" bottom="0" />
+			</padding>
+			<children>
+				<Region fx:id="bottomLeft" minWidth="279" />
+				<GridPane fx:id="bottom" hgap="5" gridLinesVisible="false" HBox.hgrow="ALWAYS">		
+					<children>
+						<Label fx:id="stateFooter" text="" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+						<Label fx:id="modeFooter" styleClass="left-border" text="Mode: Manual" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+							<graphic>
+								<ImageView styleClass="footer-img" fitWidth="13" fitHeight="13" >
+									<image>
+										 <Image url="@../../../../../images/manual.png" />
+									</image>
+								</ImageView>
+							</graphic>
+						</Label>
+						<Label fx:id="downFooter" styleClass="left-border" text="Down: 0.0" prefWidth="150" GridPane.rowIndex="0" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+							<graphic>
+								<ImageView styleClass="footer-img" fitWidth="15" fitHeight="15" >
+									<image>
+										 <Image url="@../../../../../images/dw_cell.png" />
+									</image>
+								</ImageView>
+							</graphic>						
+						</Label>
+						<Label fx:id="speedFooter" styleClass="left-border" text="Speed: 0.0" prefWidth="150" GridPane.rowIndex="0" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
+							<graphic>
+								<ImageView styleClass="footer-img" fitWidth="13" fitHeight="13" >
+									<image>
+										 <Image url="@../../../../../images/speed.png" />
+									</image>
+								</ImageView>
+							</graphic>		
+						</Label>
+						<Label fx:id="connFooter" styleClass="left-border" text="Offline" GridPane.rowIndex="0" GridPane.columnIndex="4" GridPane.halignment="RIGHT">
+							<graphic>
+								<ImageView styleClass="footer-img" fitWidth="13" fitHeight="13" >
+									<image>
+										 <Image url="@../../../../../images/offline.png" />
+									</image>
+								</ImageView>
+							</graphic>	
+						</Label>
+					</children>
+					<columnConstraints>
+						<ColumnConstraints hgrow="ALWAYS" maxWidth="250"/>
+						<ColumnConstraints hgrow="ALWAYS" prefWidth="250" maxWidth="250"/>
+						<ColumnConstraints hgrow="ALWAYS" />
+						<ColumnConstraints hgrow="ALWAYS" prefWidth="150" maxWidth="150"/>
+						<ColumnConstraints hgrow="ALWAYS" />
+						<ColumnConstraints hgrow="ALWAYS" maxWidth="150"/>
+					</columnConstraints>
+				</GridPane>
+			</children>
+		</HBox>
+		
+		<!-- END STATE BAR -->
+		
+	</bottom>
+</BorderPane>

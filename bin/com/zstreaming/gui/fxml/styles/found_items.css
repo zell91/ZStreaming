@@ -1,0 +1,116 @@
+.found_item.found{
+	-fx-background-color:rgba(77, 255, 77, 0.1);
+	-fx-background-insets:-3 -6 -3 -7;
+}
+
+.found_item.not_found{
+	-fx-background-color:rgba(255, 127, 127,0.1);
+	-fx-background-insets:-3 -6 -3 -7;
+}
+
+.found_item .label{
+	-fx-padding:0;
+	-fx-text-fill:rgba(0,0,0);
+}
+
+.name_lbl{
+	-fx-font-weight:700;
+}
+
+.name_box, .name_lbl{
+	-fx-min-width:0;
+}
+
+
+.stop_btn, .remove_btn{
+	-fx-padding:0;
+	-fx-min-height:15;
+	-fx-min-width:15;
+	-fx-background-insets:2;
+	-fx-background-radius:50;
+	-fx-background-repeat:no-repeat;
+	-fx-background-position:center center;
+	-fx-background-size:15 15;
+	-fx-opacity:0.5;
+}
+
+.remove_btn{
+	-fx-background-image: url("../../../../../../images/close.png");
+	-fx-background-color:rgba(220,220,220), transparent, transparent, transparent;
+}
+
+.stop_btn{
+	-fx-background-image: url("../../../../../../images/stop.png");
+	-fx-background-color:transparent, transparent, transparent;
+}
+
+.remove_btn:hover, .stop_btn:hover{
+	-fx-background-color:rgba(180,180,180), transparent, transparent, transparent;
+	-fx-opacity:1;
+}
+
+.remove_btn:pressed{
+	-fx-effect: dropshadow(gaussian, rgba(255,255,255,.8), 0,100,0,0);
+	-fx-background-color:rgba(220,220,220), transparent, transparent, transparent;
+	-fx-opacity:1;
+}
+
+.stop_btn:pressed{
+	-fx-background-color:rgba(255,255,255), transparent, transparent, transparent;
+	-fx-opacity:1;
+}
+
+.progress_scan{
+	-fx-pref-height:15;
+	-fx-pref-width:15;
+	-fx-progress-color: rgb(0,0,0, 0.5);
+}
+
+.stream_btn, .down_btn, .add-to-list-main-btn{	
+	-fx-background-color:transparent;
+	-fx-background-size:20 20;
+	-fx-background-position:center center;
+	-fx-background-repeat:no-repeat;
+	-fx-background-radius:0, 0, 0, 0;
+	-fx-padding:0;
+	-fx-min-width:20;
+	-fx-min-height:20;
+	-fx-opacity:.8;
+	-fx-cursor:hand;
+}
+
+.down_btn{
+	-fx-background-image:url("../../../../../../images/down.png");
+}
+
+.stream_btn{
+	-fx-background-image:url("../../../../../../images/play.png");	
+}
+
+.add-to-list-main-btn{
+	-fx-background-image:url("../../../../../../images/add_to_list.png");	
+}
+
+.stream_btn:hover, .down_btn:hover, .add-to-list-main-btn:hover{
+	-fx-opacity:1;
+}
+
+.stream_btn:pressed, .down_btn:pressed, .add-to-list-main-btn:pressed{
+	-fx-opacity:.6;
+}
+
+.add-to-list-main-btn .arrow{
+	-fx-padding:0;
+}
+/*
+.add-to-list-main-btn{
+	-fx-padding:3 0;
+	-fx-background-color:linear-gradient(rgba(0, 0, 0, .8) 0%, rgba(60,60,60,.8) 100%);
+	-fx-background-insets:0, 0;
+	-fx-background-radius:0, 0;
+}
+
+.add-to-list-main-btn .label{
+	-fx-text-fill:white;
+	-fx-padding:0 10 0 10;
+}*/

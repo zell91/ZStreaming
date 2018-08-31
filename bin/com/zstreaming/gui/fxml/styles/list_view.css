@@ -1,0 +1,52 @@
+.list-view-container{
+	-fx-background-color:rgba(180,180,180), white;
+	-fx-background-insets:0, 2;
+}
+
+.list-view-header{
+	-fx-padding:0 10;
+	-fx-text-fill:rgba(50,50,50);
+}
+
+.list-view-action{
+	-fx-background-color:rgba(210,210,210);
+	-fx-background-insets:0, 0;	
+	-fx-text-fill:rgba(50,50,50);
+	-fx-background-radius:0, 0, 0, 0;
+}
+
+.list-view-action:hover{
+	-fx-background-color:rgba(210,210,210), rgba(255,255,255,.1);
+}
+
+.list-view-action:pressed{
+	-fx-background-color:rgba(210,210,210), rgba(255,255,255,.2);
+}
+
+.list-view-close{
+	-fx-background-color:transparent, transparent;	
+}
+
+.list-view-close{
+	-fx-background-image:url("../../../../../../images/close_x.png");
+	-fx-background-repeat:no-repeat;
+	-fx-background-position:center center;
+	-fx-opacity:.5;
+}
+
+.list-view-close:hover{
+	-fx-opacity:.7;
+}
+
+.list-view-close:pressed{
+	-fx-opacity:.9;
+}
+
+._list-view{
+	-fx-background-color:rgba(200,200,200), rgba(255, 255, 255,1);
+	-fx-background-insets:0, 1;
+}
+
+._list-view .label{
+	-fx-text-fill:rgba(0,0,50);
+}

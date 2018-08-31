@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import com.zstreaming.gui.splash.SplashController?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.image.Image?>
+
+<VBox fx:id="main" prefWidth="1000" alignment="CENTER" prefHeight="700" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zstreaming.gui.splash.SplashController" stylesheets="@styles/splash_screen.css">
+	<children>
+		<StackPane fx:id="stackPane" alignment="CENTER">
+			<padding>
+				<Insets top="0" bottom="0" right="0" left="0" />
+			</padding>
+			<children>
+				<Pane fx:id="backgroundPane" maxWidth="500" maxHeight="300">
+					<children>
+					</children>		
+				</Pane>
+				<ImageView fx:id="imageView" fitWidth="400" fitHeight="400">
+					<image>
+						<Image url="@prova.png" />
+					</image>
+				</ImageView>
+				<BorderPane fx:id="contentPane" maxWidth="500" maxHeight="300">
+					<padding>
+						<Insets top="10" bottom="0" right="15" left="15" />
+					</padding>
+					<top>
+						<HBox fx:id="top" spacing="10">
+							<children>
+								<Label text="ZStreaming" />
+							</children>
+						</HBox>
+					</top>
+					<center>
+						<VBox fx:id="center" spacing="10" alignment="CENTER">
+							<children>
+								<Label fx:id="title" text="ZStreaming" VBox.vgrow="ALWAYS" />
+							</children>
+						</VBox>
+					</center>
+					<bottom>
+						<VBox fx:id="bottom" spacing="20" BorderPane.alignment="CENTER" alignment="CENTER">
+							<children>
+								<StackPane fx:id="progressBar" maxWidth="420" alignment="TOP_LEFT">
+									<children>
+										<Label styleClass="progress"  text="." />		
+										<Label styleClass="progress"  text="." />										
+										<Label styleClass="progress"  text="." />		
+									</children>
+								</StackPane>
+								<HBox fx:id="progressFooter" spacing="10" maxWidth="500" alignment="TOP_LEFT">
+									<padding>
+										<Insets top="0" bottom="10" right="0" left="0" />
+									</padding>
+									<children>
+										<Label fx:id="progressText" text="Caricamento in corso..." />
+									</children>
+								</HBox>
+							</children>
+						</VBox>
+					</bottom>
+				</BorderPane>
+			</children>
+		</StackPane>
+	</children>
+</VBox>
